@@ -2,6 +2,66 @@
 
 using namespace std;
 
+class Account
+{
+public:
+    virtual double getBalance() = 0;
+    virtual bool getType() = 0;
+protected:
+    double balance;
+    bool type;
+};
+
+class CheckingAccount: public Account
+{
+public:
+    double getBalance()
+    {
+        return this->balance;
+    }
+    bool getType()
+    {
+        return 0;
+    }
+};
+
+class SavingsAccount: public Account
+{
+public:
+    double getBalance()
+    {
+        return this->balance;
+    }
+    bool getType()
+    {
+        return 1;
+    }
+};
+
+class User
+{
+public:
+    virtual int getID() = 0;
+protected:
+    int userID;
+    char[20] userName;
+};
+
+class Customer: public User
+{
+    
+};
+
+class Manager: public User
+{
+    
+};
+
+class Maintenance: public User
+{
+    
+};
+
 int main()
 {
     //create manager object
@@ -73,7 +133,9 @@ int main()
                 cin>>choice;
                 switch(choice)
                 {
-                    case 1 : c1.deposit_currbal();
+                    case 1 : cout<<"From which account?";
+                        cout<<"1) Checking Account";
+                        cout<<"2) Savings Account";
                         cin.get();
                         break;
                     case 2 : c1.withdraw_currbal();
