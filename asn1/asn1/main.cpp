@@ -1,11 +1,3 @@
-//
-//  main.cpp
-//  asn1
-//
-//  Created by ernie k on 2014-09-10.
-//  Copyright (c) 2014 uwo. All rights reserved.
-//
-
 #include <iostream> 
 
 using namespace std;
