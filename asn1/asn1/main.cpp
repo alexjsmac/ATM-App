@@ -7,81 +7,146 @@
 //
 
 #include <iostream> 
+#include <string>
 
 using namespace std;
 
 class Account
 {
-public:
-    virtual double getBalance() = 0;
-    virtual bool getType() = 0;
 protected:
     double balance;
     bool type;
-};
-
-class CheckingAccount: public Account
-{
 public:
     double getBalance()
     {
-        return this->balance;
+        return balance;
     }
     bool getType()
     {
-        return 0;
+        return type;
     }
 };
 
-class SavingsAccount: public Account
+class CheckingAccount : public Account
 {
 public:
-    double getBalance()
+    CheckingAccount()
     {
-        return this->balance;
+        balance = 0;
+        type = 0;
     }
-    bool getType()
+};
+
+class SavingsAccount : public Account
+{
+public:
+    SavingsAccount()
     {
-        return 1;
+        balance = 0;
+        type = 1;
     }
 };
 
 class User
 {
-public:
-    virtual int getID() = 0;
 protected:
     int userID;
-    char[20] userName;
+    string userName;
+    int userType;
+public:
+    int getID()
+    {
+        return userID;
+    }
+    string getUserName()
+    {
+        return userName;
+    }
+    int getUserType()
+    {
+        return userType;
+    }
+    
 };
 
 class Customer: public User
 {
-    
+    CheckingAccount checkingsAcc;
+    SavingsAccount savingsAcc;
+public:
+    Customer(int uID, string uName)
+    {
+        userID = uID;
+        userName = uName;
+        userType = 0;
+    }
+    double chAccBalance()
+    {
+        return checkingsAcc.getBalance();
+    }
+    double saAccBalance()
+    {
+        return savingsAcc.getBalance();
+    }
 };
 
 class Manager: public User
 {
-    
+public:
+    Manager (int, string);
+    int getType()
+    {
+        return 1;
+    }
+    void createUser(int uID, string userName)
+    {
+        Customer newCust (uID, userName);
+    }
+    string dispAccount(int uID)
+    {
+        Customer foundCust = findCust(int uID);
+        cout<<"Username: ";
+    }
 };
+
+Manager::Manager(int manID, string manName)
+{
+    userID = manID;
+    userName = manName;
+    userType = 1;
+}
 
 class Maintenance: public User
 {
-    
+public:
+    Maintenance (int, string);
+    void maintenanceMode()
+    {
+        
+    }
 };
+
+Maintenance::Maintenance(int mainID, string mainName)
+{
+    userID = mainID;
+    userName = mainName;
+    userType = 2;
+}
 
 int main()
 {
     //create manager object
+    Manager man (123456, "Manager");
     
-    cout<<"\nEnter login ID\n\n";
+    //create maintanence object
+    Maintenance main (234567, "Maintenance");
+    
+    cout<<"\nHello, please enter login ID\n\n";
     int loginID;
     cin>>loginID;
     
-    int manID = 214345454;
-    
     //Or should we use strings?
-    if(loginID==manID)
+    if(loginID==man.getID())
     {
         while(1)
         {
@@ -98,32 +163,48 @@ int main()
             
             switch(choice)
             {
-                case 1 : cout<<"Please create a new ID number:";
+                case 1 :
+                {
+                    cout<<"Please create a new ID number:";
                     int userID;
                     cin>>userID;
-                    man.create_user(userID);
+                    cout<<"Please enter the user's name:";
+                    string userName;
+                    cin>>userName;
+                    man.createUser(userID, userName);
                     cin.get();
                     break;
-                case 2 : cout<<"Please enter user's ID number:";
+                }/*
+                case 2 :
+                {
+                    cout<<"Please enter user's ID number:";
                     cin>>userID;
                     man.close_user(userID);
                     cin.get();
                     break;
-                case 3 : cout<<"Please enter a user ID number:";
+                }*/
+                case 3 :
+                {
+                    cout<<"Please enter a user ID number:";
                     cin>>userID;
-                    man.disp_account(userID);
+                    man.dispAccount(userID);
                     cin.get();
                     break;
+                }/*
                 case 4 : man.display_all_accounts();
                     cin.get();
-                    break;
-                case 5 : goto end;
-                default: cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
+                    break;*/
+                case 5 :
+                {
+                    goto end;
+                }
+                //default: cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
             }
         }
     }
-    else if(/*ID entered matches an existing ID number*/)
-    {
+    
+    //else if(/*ID entered matches an existing ID number*/)
+    /*{
         userAccount = man.getUser(loginID);
         checkAccount = userAccount.getChecking();
         saveAccount = userAccount.getSavings();
@@ -160,9 +241,8 @@ int main()
                     default: cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
                 }
             }
-        }
+        }*/
     end:
         return 0;
-    }
-}
-
+    
+};
