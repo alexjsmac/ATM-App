@@ -4,7 +4,9 @@ class Account{
 public:
     Account();
     double getBalance();
+    void setBalance(double newBal);
     bool getType();
+    void setType(bool type);
 };
 
 class ChequingAccount: public Account{

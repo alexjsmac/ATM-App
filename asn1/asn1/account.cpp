@@ -15,16 +15,17 @@ bool Account::getType(){
        return type;
 }
 
-Account::~Account(){
-
+void Account::setType(bool newType){
+    type = newType;
 }
 
-class ChequingAccount: public Account{
-public:
-	ChequingAccount(){
-		balance = 0;
-		type = 0;
-	}
+void Account::setBalance(double newBal){
+    balance = newBal;
+}
+
+ChequingAccount::ChequingAccount(){
+		this->setBalance(0);
+        this->setType(0);
 };
 
 class SavingsAccount: public Account {
