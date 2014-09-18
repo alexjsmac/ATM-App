@@ -1,79 +1,24 @@
 #include <iostream> 
+#include <string>
+#include "account.h"
+#include "user.h"
 
 using namespace std;
-
-class Account
-{
-public:
-    virtual double getBalance() = 0;
-    virtual bool getType() = 0;
-protected:
-    double balance;
-    bool type;
-};
-
-class CheckingAccount: public Account
-{
-public:
-    double getBalance()
-    {
-        return this->balance;
-    }
-    bool getType()
-    {
-        return 0;
-    }
-};
-
-class SavingsAccount: public Account
-{
-public:
-    double getBalance()
-    {
-        return this->balance;
-    }
-    bool getType()
-    {
-        return 1;
-    }
-};
-
-class User
-{
-public:
-    virtual int getID() = 0;
-protected:
-    int userID;
-    char[20] userName;
-};
-
-class Customer: public User
-{
-    
-};
-
-class Manager: public User
-{
-    
-};
-
-class Maintenance: public User
-{
-    
-};
 
 int main()
 {
     //create manager object
+    Manager man (123456, "Manager");
     
-    cout<<"\nEnter login ID\n\n";
+    //create maintanence object
+    Maintenance main (234567, "Maintenance");
+    
+    cout<<"\nHello, please enter login ID\n\n";
     int loginID;
     cin>>loginID;
     
-    int manID = 214345454;
-    
     //Or should we use strings?
-    if(loginID==manID)
+    if(loginID==man.getID())
     {
         while(1)
         {
@@ -90,32 +35,48 @@ int main()
             
             switch(choice)
             {
-                case 1 : cout<<"Please create a new ID number:";
+                case 1 :
+                {
+                    cout<<"Please create a new ID number:";
                     int userID;
                     cin>>userID;
-                    man.create_user(userID);
+                    cout<<"Please enter the user's name:";
+                    string userName;
+                    cin>>userName;
+                    man.createUser(userID, userName);
                     cin.get();
                     break;
-                case 2 : cout<<"Please enter user's ID number:";
+                }/*
+                case 2 :
+                {
+                    cout<<"Please enter user's ID number:";
                     cin>>userID;
                     man.close_user(userID);
                     cin.get();
                     break;
-                case 3 : cout<<"Please enter a user ID number:";
+                }*/
+                case 3 :
+                {
+                    cout<<"Please enter a user ID number:";
                     cin>>userID;
-                    man.disp_account(userID);
+                    man.dispAccount(userID);
                     cin.get();
                     break;
+                }/*
                 case 4 : man.display_all_accounts();
                     cin.get();
-                    break;
-                case 5 : goto end;
-                default: cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
+                    break;*/
+                case 5 :
+                {
+                    goto end;
+                }
+                //default: cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
             }
         }
     }
-    else if(/*ID entered matches an existing ID number*/)
-    {
+    
+    //else if(/*ID entered matches an existing ID number*/)
+    /*{
         userAccount = man.getUser(loginID);
         checkAccount = userAccount.getChecking();
         saveAccount = userAccount.getSavings();
@@ -152,9 +113,8 @@ int main()
                     default: cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
                 }
             }
-        }
+        }*/
     end:
         return 0;
-    }
-}
-
+    
+};
