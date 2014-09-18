@@ -5,19 +5,18 @@
 
 using namespace std;
 
-int main()
-{
+int main(){
+	cout<<"\nHello, please enter login ID\n\n";
     //create manager object
-    Manager man (123456, "Manager");
+    Manager man(123456, "Manager");
     
-    //create maintanence object
-    Maintenance main (234567, "Maintenance");
+    //create maintenance object
+    Maintenance main(234567, "Maintenance");
     
     cout<<"\nHello, please enter login ID\n\n";
     int loginID;
     cin>>loginID;
     
-    //Or should we use strings?
     if(loginID==man.getID())
     {
         while(1)
@@ -58,6 +57,7 @@ int main()
                 case 3 :
                 {
                     cout<<"Please enter a user ID number:";
+                    int userID;
                     cin>>userID;
                     man.dispAccount(userID);
                     cin.get();

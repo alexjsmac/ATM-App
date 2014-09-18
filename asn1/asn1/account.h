@@ -9,16 +9,10 @@ public:
 
 class ChequingAccount: public Account{
 public:
-	ChequingAccount(){
-		balance = 0;
-		type = 0;
-	}
+	ChequingAccount();
 };
 
 class SavingsAccount: public Account {
 public:
-    SavingsAccount(){
-        balance = 0;
-        type = 1;
-    }
+    SavingsAccount();
 };

@@ -18,53 +18,26 @@ class Customer: public User {
     SavingsAccount savingsAcc;
 
 public:
-    Customer(int uID, std::string uName){
-        userID = uID;
-        userName = uName;
-        userType = 0;
-    }
-
-    double chAccBalance(){
-        return checkingsAcc.getBalance();
-    }
-
-    double saAccBalance(){
-        return savingsAcc.getBalance();
-    }
+    Customer(int uID, std::string uName);
+    double chAccBalance();
+    double saAccBalance();
 };
 
 class Manager: public User{
 public:
-    Manager (int, string);
-    int getType(){
-        return 1;
-    }
-    void createUser(int uID, string userName){
-        Customer newCust (uID, userName);
-    }
-    string dispAccount(int uID){ //Has to be return not cout
-        Customer foundCust = findCust(int uID);
-        cout<<"Username: ";
-    }
+    Manager(int, string);
+    int getType();
+    void createUser(int uID, string userName);
+    string dispAccount(int uID);
 };
 
-Manager::Manager(int manID, string manName){
-    userID = manID;
-    userName = manName;
-    userType = 1;
-}
+Manager::Manager(int manID, string manName);
 
 
 class Maintenance: public User{
 public:
-    Maintenance (int, string);
-    void maintenanceMode(){
-
-    }
+    Maintenance(int, string);
+    void maintenanceMode();
 };
 
-Maintenance::Maintenance(int mainID, string mainName){
-    userID = mainID;
-    userName = mainName;
-    userType = 2;
-}
+Maintenance::Maintenance(int mainID, string mainName);
