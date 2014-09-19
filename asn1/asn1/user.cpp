@@ -1,88 +1,109 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <vector>
 #include "user.h"
 
-string userName;
-int userID;
-int userType;
+using namespace std;
 
 User::User(int userID, string userName){ //Constructor
-    this->userID;
-    this->userName;
+    userID = userID;
+    userName = userName;
 }
 
-int getID(){
+int User::getID(){
     return userID;
 }
 
-string getUserName(){
+string User::getUserName(){
     return userName;
 }
 
-int getUserType(){
+int User::getUserType(){
     return userType;
 }
 
-double checkChequingBal(){
-    
-};
 
-double checkSavingsBal(){
-    
-};
+Customer::Customer(int custID, string custName){
+    userID = custID;
+    userName = custName;
+    userType = 0;
+}
 
-//
-//class Customer: public User {
-//	ChequingAccount checkingsAcc;
-//	SavingsAccount savingsAcc;
-//public:
-//    Customer(int uID, std::string uName){
-//        userID = uID;
-//        userName = uName;
-//        userType = 0;
-//    }
-//
-//    double chAccBalance(){
-//        return checkingsAcc.getBalance();
-//    }
-//
-//    double saAccBalance(){
-//        return savingsAcc.getBalance();
-//    }
-//};
-//
-//class Manager: public User{
-//public:
-//    Manager (int, string);
-//    int getType(){
-//        return 1;
-//    }
-//    void createUser(int uID, string userName){
-//        Customer newCust (uID, userName);
-//    }
-//    string dispAccount(int uID){ //Has to be return not cout
-//        Customer foundCust = findCust(int uID);
-//        cout<<"Username: ";
-//    }
-//};
-//
-//Manager::Manager(int manID, string manName){
-//    userID = manID;
-//    userName = manName;
-//    userType = 1;
-//}
-//
-//
-//class Maintenance: public User{
-//public:
-//    Maintenance (int, string);
-//    void maintenanceMode(){
-//
-//    }
-//};
-//
-//Maintenance::Maintenance(int mainID, string mainName){
-//    userID = mainID;
-//    userName = mainName;
-//    userType = 2;
-//}
+double Customer::checkChequingBal(){
+    return checkingsAcc.getBalance();
+}
+
+double Customer::checkSavingsBal(){
+    return savingsAcc.getBalance();
+}
+
+Manager::Manager(int manID, string manName){
+    userID = manID;
+    userName = manName;
+    userType = 1;
+    //customers.reserve(1);
+}
+
+int Manager::getType(){
+    return 1;
+}
+
+void Manager::createUser(int uID, string userName){
+    if (custExists(uID))
+        cout<<"Login ID already exists"<<endl;
+    else{
+        Customer newCust (uID, userName);
+        //cout<<"User created: "<<newCust.getUserName()<<" "<<newCust.getID();
+        customers.push_back(newCust);
+        cout<<"Customer account opened successfully"<<endl;
+    }
+}
+
+void Manager::deleteUser(int custID){
+    if (custExists(custID)) {
+        vector<Customer>::iterator it;
+        for (it=customers.begin(); it!=customers.end(); ++it){
+            if (it->getID() == custID){
+                customers.erase(it);
+                cout<<"Customer with loginID "<<custID<<" deleted";
+            }
+        }
+    }
+}
+
+Customer Manager::findCust(int loginID){
+    vector<Customer>::iterator it;
+    for (it=customers.begin(); it!=customers.end(); ++it){
+        if (it->getID() == loginID){
+            return *it;
+        }
+    }
+    return *it;
+}
+
+bool Manager::custExists(int loginID){
+    bool found = false;
+    for (int i=0; i<customers.size(); i++){
+        if (customers[i].getID() == loginID){
+            found = true;
+        }
+    }
+    return found;
+}
+
+string Manager::dispAccount(int uID){
+    string output = "Nothing";
+    if (custExists(uID)){
+        Customer foundCust = findCust(uID);
+        output = foundCust.getUserName();
+        return output;
+    }
+    return output;
+}
+
+Maintenance::Maintenance(int mainID, string mainName){
+    userID = mainID;
+    userName = mainName;
+    userType = 2;
+}

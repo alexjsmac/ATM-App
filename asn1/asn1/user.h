@@ -1,15 +1,21 @@
-#include <string>
+#ifndef USER_H
+#define USER_H
 
-using namespace std;
+#include <string>
+#include <vector>
+#include "account.h"
+
+typedef std::string string;
 
 class User{
+protected:
     int userID;
     string userName;
     int userType;
-
-    User(){} //Default constructor
+    
 public:
-    User(int userID, string userName);
+    User(){} //Default constructor
+    User(int, string);
     
     int getID();
     string getUserName();
@@ -21,28 +27,29 @@ class Customer: public User {
     SavingsAccount savingsAcc;
 
 public:
-    Customer(int userID, string userName);
-    
+    Customer(int, string);
     double checkChequingBal();
     double checkSavingsBal();
 };
 
-//
-//class Manager: public User{
-//public:
-//    Manager(int, string);
-//    int getType();
-//    void createUser(int uID, string userName);
-//    string dispAccount(int uID);
-//};
-//
-//Manager::Manager(int manID, string manName);
-//
-//
-//class Maintenance: public User{
-//public:
-//    Maintenance(int, string);
-//    void maintenanceMode();
-//};
-//
-//Maintenance::Maintenance(int mainID, string mainName);
+
+class Manager: public User{
+    std::vector<Customer> customers;
+public:
+    Manager(int, string);
+    int getType();
+    void createUser(int, string);
+    void deleteUser(int);
+    string dispAccount(int);
+    Customer findCust(int);
+    bool custExists(int);
+};
+
+
+class Maintenance: public User{
+public:
+    Maintenance(int, string);
+    void maintenanceMode();
+};
+
+#endif

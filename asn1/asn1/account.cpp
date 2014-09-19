@@ -32,10 +32,3 @@ SavingsAccount::SavingsAccount(){
 	this->setBalance(0);
 	this->setType(1);
 };
-//class SavingsAccount: public Account {
-//public:
-//    SavingsAccount(){
-//        balance = 0;
-//        type = 1;
-//    }
-//};

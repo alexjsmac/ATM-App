@@ -6,13 +6,13 @@
 using namespace std;
 
 int main(){
-	cout<<"\nHello, please enter login ID\n\n";
     //create manager object
     Manager man(123456, "Manager");
     
     //create maintenance object
     Maintenance main(234567, "Maintenance");
     
+start:
     cout<<"\nHello, please enter login ID\n\n";
     int loginID;
     cin>>loginID;
@@ -39,38 +39,35 @@ int main(){
                     cout<<"Please create a new ID number:";
                     int userID;
                     cin>>userID;
-                    cout<<"Please enter the user's name:";
+                    cout<<"Enter the user's name:";
                     string userName;
                     cin>>userName;
                     man.createUser(userID, userName);
-                    cin.get();
                     break;
-                }/*
+                }
                 case 2 :
                 {
                     cout<<"Please enter user's ID number:";
+                    int userID;
                     cin>>userID;
-                    man.close_user(userID);
-                    cin.get();
+                    man.deleteUser(userID);
                     break;
-                }*/
+                }
                 case 3 :
                 {
                     cout<<"Please enter a user ID number:";
                     int userID;
                     cin>>userID;
-                    man.dispAccount(userID);
-                    cin.get();
+                    cout<<man.dispAccount(userID)<<endl;
                     break;
                 }/*
                 case 4 : man.display_all_accounts();
-                    cin.get();
                     break;*/
                 case 5 :
                 {
                     goto end;
                 }
-                //default: cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
+                default: cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
             }
         }
     }
@@ -114,6 +111,11 @@ int main(){
                 }
             }
         }*/
+    else{
+        cout<<"Invalid ID, try again"<<endl;
+        goto start;
+    }
+    
     end:
         return 0;
     

@@ -1,3 +1,6 @@
+#ifndef ACCOUNT_H
+#define ACCOUNT_H
+
 class Account{
     double balance;
     bool type;
@@ -18,3 +21,5 @@ class SavingsAccount: public Account {
 public:
     SavingsAccount();
 };
+
+#endif
