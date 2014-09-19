@@ -9,22 +9,24 @@ class User{
 
     User(){} //Default constructor
 public:
-    User(int userID, string userName, int userType);
+    User(int userID, string userName);
     
     int getID();
     string getUserName();
     int getUserType();
 };
 
-//class Customer: public User {
-//	ChequingAccount checkingsAcc;
-//    SavingsAccount savingsAcc;
-//
-//public:
-//    Customer(int uID, std::string uName);
-//    double chAccBalance();
-//    double saAccBalance();
-//};
+class Customer: public User {
+	ChequingAccount checkingsAcc;
+    SavingsAccount savingsAcc;
+
+public:
+    Customer(int userID, string userName);
+    
+    double checkChequingBal();
+    double checkSavingsBal();
+};
+
 //
 //class Manager: public User{
 //public:

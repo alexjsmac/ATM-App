@@ -6,8 +6,9 @@ string userName;
 int userID;
 int userType;
 
-User::User(int userID, string userName, int userType){ //Constructor
-    this
+User::User(int userID, string userName){ //Constructor
+    this->userID;
+    this->userName;
 }
 
 int getID(){
@@ -21,6 +22,14 @@ string getUserName(){
 int getUserType(){
     return userType;
 }
+
+double checkChequingBal(){
+    
+};
+
+double checkSavingsBal(){
+    
+};
 
 //
 //class Customer: public User {
