@@ -28,8 +28,8 @@ class Customer: public User {
 
 public:
     Customer(int, string);
-    double checkChequingBal();
-    double checkSavingsBal();
+    ChequingAccount getChequing();
+    SavingsAccount getSavings();
 };
 
 

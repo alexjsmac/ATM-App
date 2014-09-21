@@ -30,12 +30,12 @@ Customer::Customer(int custID, string custName){
     userType = 0;
 }
 
-double Customer::checkChequingBal(){
-    return checkingsAcc.getBalance();
+ChequingAccount Customer::getChequing(){
+    return checkingsAcc;
 }
 
-double Customer::checkSavingsBal(){
-    return savingsAcc.getBalance();
+SavingsAccount Customer::getSavings(){
+    return savingsAcc;
 }
 
 Manager::Manager(int manID, string manName){
