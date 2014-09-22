@@ -53,7 +53,7 @@ void Manager::createUser(int uID, string userName){
     if (custExists(uID))
         cout<<"Login ID already exists"<<endl;
     else{
-        Customer newCust (uID, userName);
+        Customer newCust(uID, userName);
         //cout<<"User created: "<<newCust.getUserName()<<" "<<newCust.getID();
         customers.push_back(newCust);
         cout<<"Customer account opened successfully"<<endl;

@@ -37,6 +37,7 @@ class Manager: public User{
     std::vector<Customer> customers;
 public:
     Manager(int, string);
+    
     int getType();
     void createUser(int, string);
     void deleteUser(int);

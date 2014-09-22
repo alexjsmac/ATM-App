@@ -1,5 +1,7 @@
 #include <iostream> 
 #include <string>
+#include <fstream>
+#include <ctime>
 #include "account.h"
 #include "user.h"
 
@@ -8,9 +10,12 @@ using namespace std;
 int main(){
     //create manager object
     Manager man(123456, "Manager");
-    
     //create maintenance object
     Maintenance main(234567, "Maintenance");
+    
+    //Execution trace
+    bool tracer(0); //Won't leave as global var, testing.
+//
     
 start:
     cout<<"\nHello, please enter login ID\n\n";
@@ -70,6 +75,38 @@ start:
                 }
             }
         }
+    }
+    
+    else if(loginID==main.getID()){
+        int choice;
+        
+        system("clear");
+        if(tracer==0)
+            cout<<"1)   Turn on execution trace\n";
+        else
+            cout<<"2)   Turn off execution trace\n";
+        cin>>choice;
+        
+        switch (choice) {
+            case 1:{
+//                time_t timeNow;
+                ofstream executionTrace;
+                executionTrace.open("trace.txt");
+                
+//                timeNow=time(NULL);
+                executionTrace << "Execution trace on | "<<75;
+                executionTrace.close();
+                break;
+            }
+            case 2:{
+                tracer=0;
+            }
+            default:{
+                cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
+            }
+                break;
+        }
+        
     }
     
     else if(man.custExists(loginID)){
@@ -265,6 +302,7 @@ start:
                 }
             }
         }
+    
     else{
         cout<<"Invalid ID, try again"<<endl;
         goto start;
