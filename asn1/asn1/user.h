@@ -40,7 +40,7 @@ public:
     int getType();
     void createUser(int, string);
     void deleteUser(int);
-    string dispAccount(int);
+    void dispAccount(int);
     Customer findCust(int);
     bool custExists(int);
 };

@@ -30,8 +30,8 @@ int main(){
     bool tracer(0); //Won't leave as global var, testing.
     
 start:
-//    system("clear");
-    cout<<"\nHello, please enter login ID\n\n";
+    system("clear");
+    cout<<"Hello, please enter login ID:\n";
     int loginID;
     cin>>loginID;
     
@@ -52,14 +52,14 @@ start:
             switch(choice){
                 case 1:{
                 uniqueID:
-                    cout<<"Please create a new unique ID number:\n";
+                    cout<<"\nPlease create a new unique ID number:\n";
                     int userID;
                     cin>>userID;
                     if (man.custExists(userID)){
                         cout<<"ID number already exists\n";
                         goto uniqueID;
                     }
-                    cout<<"Enter the user's name:\n";
+                    cout<<"\nEnter the user's name:\n";
                     string userName;
                     cin>>userName;
                     man.createUser(userID, userName);
@@ -67,7 +67,7 @@ start:
                 }
                 case 2:{
                 removeUser:
-                    cout<<"Please enter user's ID number:\n";
+                    cout<<"\nPlease enter user's ID number:\n";
                     int userID;
                     cin>>userID;
                     if (!man.custExists(userID)){
@@ -79,14 +79,14 @@ start:
                 }
                 case 3:{
                 displayAccount:
-                    cout<<"Please enter user's ID number:\n";
+                    cout<<"\nPlease enter user's ID number:\n";
                     int userID;
                     cin>>userID;
                     if (!man.custExists(userID)){
                         cout<<"User does not exist\n";
                         goto displayAccount;
                     }
-                    cout<<man.dispAccount(userID)<<endl;
+                    man.dispAccount(userID);
                     break;
                 }
                 case 4 :{
@@ -108,7 +108,7 @@ start:
     else if(loginID==main.getID()){
         int choice;
         
-        system("clear");
+        //system("clear");
         if(tracer==0)
             cout<<"1)   Turn on execution trace\n";
         else
@@ -118,18 +118,18 @@ start:
         switch (choice) {
             case 1:{
                 traceExecution("Execution trace on", loginID);
-                
                 break;
             }
             case 2:{
                 tracer=0;
+                break;
             }
             default:{
                 cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
             }
                 break;
         }
-        
+        goto start;
     }
     
     else if(man.custExists(loginID)){
@@ -155,7 +155,7 @@ start:
                     case 1:{
                     deposit:
                         //system("clear");
-                        cout<<"To which account?\n";
+                        cout<<"\nTo which account?\n";
                         cout<<"1)   Checking Account\n";
                         cout<<"2)   Savings Account\n";
                         cout<<"3)   Go back\n";
@@ -163,7 +163,7 @@ start:
                         cin>>account;
                         switch(account){
                             case 1:{
-                                cout<<"How much would you like to deposit?\n";
+                                cout<<"\nHow much would you like to deposit?\n";
                                 int amount;
                                 cin>>amount;
                                 double newBalance = checkAccount.getBalance() + amount;
@@ -172,7 +172,7 @@ start:
                                 break;
                             }
                             case 2:{
-                                cout<<"How much would you like to deposit?\n";
+                                cout<<"\nHow much would you like to deposit?\n";
                                 int amount;
                                 cin>>amount;
                                 double newBalance = saveAccount.getBalance() + amount;
@@ -193,7 +193,7 @@ start:
                     case 2:{
                     withdraw:
                         //system("clear");
-                        cout<<"From which account?\n";
+                        cout<<"\nFrom which account?\n";
                         cout<<"1)   Checking Account\n";
                         cout<<"2)   Savings Account\n";
                         cout<<"3)   Go back\n";
@@ -201,7 +201,7 @@ start:
                         cin>>account;
                         switch(account){
                             case 1:{
-                                cout<<"How much would you like to withdraw?\n";
+                                cout<<"\nHow much would you like to withdraw?\n";
                                 int amount;
                                 cin>>amount;
                                 double newBalance = checkAccount.getBalance() - amount;
@@ -222,7 +222,7 @@ start:
                                 break;
                             }
                             case 2:{
-                                cout<<"How much would you like to withdraw?\n";
+                                cout<<"\nHow much would you like to withdraw?\n";
                                 int amount;
                                 cin>>amount;
                                 double newBalance = saveAccount.getBalance() - amount;
@@ -243,7 +243,7 @@ start:
                     case 3:{
                     transfer:
                         //system("clear");
-                        cout<<"Which transfer would you like to do?\n";
+                        cout<<"\nWhich transfer would you like to do?\n";
                         cout<<"1)   Checking Account to Savings Account\n";
                         cout<<"2)   Savings Account to Chequing Assount\n";
                         cout<<"3)   Go back\n";
@@ -251,7 +251,7 @@ start:
                         cin>>account;
                         switch(account){
                             case 1:{
-                                cout<<"How much would you like to transfer?\n";
+                                cout<<"\nHow much would you like to transfer?\n";
                                 int amount;
                                 cin>>amount;
                                 double newBalance1 = saveAccount.getBalance() + amount;
@@ -276,7 +276,7 @@ start:
                                 break;
                             }
                             case 2:{
-                                cout<<"How much would you like to transfer?\n";
+                                cout<<"\nHow much would you like to transfer?\n";
                                 int amount;
                                 cin>>amount;
                                 double newBalance1 = checkAccount.getBalance() + amount;
@@ -305,7 +305,7 @@ start:
                     case 4:{
                     display:
                         //system("clear:");
-                        cout<<"Which account?\n";
+                        cout<<"\nWhich account?\n";
                         cout<<"1)   Checking Account\n";
                         cout<<"2)   Savings Account\n";
                         cout<<"3)   Go back\n";
@@ -313,11 +313,11 @@ start:
                         cin>>account;
                         switch(account){
                             case 1:{
-                                cout<<"Current balance is: $"<<checkAccount.getBalance()<<endl;
+                                cout<<"\nCurrent balance is: $"<<checkAccount.getBalance()<<endl;
                                 break;
                             }
                             case 2:{
-                                cout<<"Current balance is: $"<<saveAccount.getBalance()<<endl;
+                                cout<<"\nCurrent balance is: $"<<saveAccount.getBalance()<<endl;
                                 break;
                             }
                             case 3:{

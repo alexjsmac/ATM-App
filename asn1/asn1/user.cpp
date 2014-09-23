@@ -54,8 +54,8 @@ void Manager::createUser(int uID, string userName){
         Customer newCust(uID, userName);
         //cout<<"User created: "<<newCust.getUserName()<<" "<<newCust.getID();
         customers.push_back(newCust);
-        cout<<"Customer account opened successfully"<<endl;
-        cout<<customers.size()<<endl;
+        cout<<"Customer account opened successfully!"<<endl;
+        //cout<<customers.size()<<endl;
 }
 
 void Manager::deleteUser(int custID){
@@ -88,10 +88,9 @@ bool Manager::custExists(int loginID){
     return found;
 }
 
-string Manager::dispAccount(int uID){
+void Manager::dispAccount(int uID){
     Customer foundCust = findCust(uID);
-    string output = "Username: " + foundCust.getUserName();
-    return output;
+    cout<<"\nUsername: " << foundCust.getUserName() << "\nID Number: " << foundCust.getID() << "\nChequing Account Balance: $" << foundCust.getChequing().getBalance() << "\nSavings Account Balance: $" << foundCust.getSavings().getBalance() << endl;
 }
 
 Maintenance::Maintenance(int mainID, string mainName){
