@@ -9,12 +9,12 @@ using namespace std;
 
 void traceExecution(string function, int userID){
     ofstream executionTrace;
-    executionTrace.open("trace.txt");
+    executionTrace.open("trace.txt", std::fstream::app);
     
     time_t timeNow;
     struct tm * timeinfo;
-    time ( &timeNow );
-    timeinfo = localtime ( &timeNow );
+    time (&timeNow);
+    timeinfo = localtime (&timeNow);
     
     executionTrace <<function<<" | "<<userID<<" | "<<asctime (timeinfo);
     executionTrace.flush();
@@ -137,6 +137,7 @@ start:
         switch (choice) {
             case 1:{
                 traceExecution("Execution trace on", loginID);
+                tracer=1;
                 break;
             }
             case 2:{
@@ -153,6 +154,7 @@ start:
     
     else if(man.custExists(loginID)){
         Customer userAccount = man.findCust(loginID);
+//        if(userAccount.getChequing().getType() == 0)
         ChequingAccount checkAccount = userAccount.getChequing();
         SavingsAccount saveAccount = userAccount.getSavings();
             while(1){
