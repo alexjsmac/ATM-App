@@ -41,8 +41,10 @@ public:
     void createUser(int, string);
     void deleteUser(int);
     void dispAccount(int);
+    void dispAllAccounts();
     Customer findCust(int);
     bool custExists(int);
+    std::vector<Customer> custList();
 };
 
 

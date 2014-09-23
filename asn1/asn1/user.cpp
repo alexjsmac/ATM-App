@@ -61,10 +61,13 @@ void Manager::createUser(int uID, string userName){
 void Manager::deleteUser(int custID){
     vector<Customer>::iterator it;
     for (it=customers.begin(); it!=customers.end(); ++it){
-        if (it->getID() == custID){
-            customers.erase(it);
-            cout<<"Customer with loginID "<<custID<<" deleted";
+        if (customers.size() > 0){
+            if (it->getID() == custID){
+                customers.erase(it);
+                cout<<"Customer with ID number \""<<custID<<"\" deleted successfully!\n";
+            }
         }
+        else break;
     }
 }
 
@@ -91,6 +94,17 @@ bool Manager::custExists(int loginID){
 void Manager::dispAccount(int uID){
     Customer foundCust = findCust(uID);
     cout<<"\nUsername: " << foundCust.getUserName() << "\nID Number: " << foundCust.getID() << "\nChequing Account Balance: $" << foundCust.getChequing().getBalance() << "\nSavings Account Balance: $" << foundCust.getSavings().getBalance() << endl;
+}
+
+void Manager::dispAllAccounts(){
+    vector<Customer>::iterator it;
+    for (it=customers.begin(); it!=customers.end(); ++it){
+        dispAccount(it->getID());
+    }
+}
+
+vector<Customer> Manager::custList(){
+    return customers;
 }
 
 Maintenance::Maintenance(int mainID, string mainName){

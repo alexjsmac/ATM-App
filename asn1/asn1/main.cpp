@@ -67,29 +67,48 @@ start:
                 }
                 case 2:{
                 removeUser:
-                    cout<<"\nPlease enter user's ID number:\n";
-                    int userID;
-                    cin>>userID;
-                    if (!man.custExists(userID)){
-                        cout<<"User does not exist\n";
-                        goto removeUser;
+                    if (man.custList().size() == 0){
+                        cout<<"\nNo customer accounts to remove!\n";
+                        break;
                     }
-                    man.deleteUser(userID);
-                    break;
+                    else{
+                        cout<<"\nPlease enter user's ID number:\n";
+                        int userID;
+                        cin>>userID;
+                        if (!man.custExists(userID)){
+                            cout<<"User does not exist\n";
+                            goto removeUser;
+                        }
+                        man.deleteUser(userID);
+                        break;
+                    }
                 }
                 case 3:{
                 displayAccount:
-                    cout<<"\nPlease enter user's ID number:\n";
-                    int userID;
-                    cin>>userID;
-                    if (!man.custExists(userID)){
-                        cout<<"User does not exist\n";
-                        goto displayAccount;
+                    if (man.custList().size() == 0){
+                        cout<<"\nNo customer accounts to display!\n";
+                        break;
                     }
-                    man.dispAccount(userID);
+                    else{
+                        cout<<"\nPlease enter user's ID number:\n";
+                        int userID;
+                        cin>>userID;
+                        if (!man.custExists(userID)){
+                            cout<<"User does not exist\n";
+                            goto displayAccount;
+                        }
+                        man.dispAccount(userID);
+                    }
                     break;
                 }
                 case 4 :{
+                    if (man.custList().size() == 0){
+                        cout<<"\nNo customer accounts to display!\n";
+                        break;
+                    }
+                    else{
+                        man.dispAllAccounts();
+                    }
                     break;
                 }
                 case 5:{
