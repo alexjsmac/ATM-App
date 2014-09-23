@@ -7,18 +7,30 @@
 
 using namespace std;
 
+void traceExecution(string function, int userID){
+    ofstream executionTrace;
+    executionTrace.open("trace.txt");
+    
+    time_t timeNow;
+    struct tm * timeinfo;
+    time ( &timeNow );
+    timeinfo = localtime ( &timeNow );
+    
+    executionTrace <<function<<" | "<<userID<<" | "<<asctime (timeinfo);
+    executionTrace.flush();
+    executionTrace.close();
+
+}
+
 int main(){
-    //create manager object
-    Manager man(123456, "Manager");
-    //create maintenance object
-    Maintenance main(234567, "Maintenance");
+    Manager man(123456, "Manager"); //Create manager object
+    Maintenance main(234567, "Maintenance"); //Create maintenance object
     
     //Execution trace
     bool tracer(0); //Won't leave as global var, testing.
-//
     
 start:
-    system("clear");
+//    system("clear");
     cout<<"\nHello, please enter login ID\n\n";
     int loginID;
     cin>>loginID;
@@ -105,13 +117,8 @@ start:
         
         switch (choice) {
             case 1:{
-//                time_t timeNow;
-                ofstream executionTrace;
-                executionTrace.open("trace.txt");
+                traceExecution("Execution trace on", loginID);
                 
-//                timeNow=time(NULL);
-                executionTrace << "Execution trace on | "<<75;
-                executionTrace.close();
                 break;
             }
             case 2:{
