@@ -18,6 +18,7 @@ int main(){
 //
     
 start:
+    system("clear");
     cout<<"\nHello, please enter login ID\n\n";
     int loginID;
     cin>>loginID;
@@ -26,7 +27,7 @@ start:
         while(1){
             int choice;
             
-            system("clear");
+            //system("clear");
             cout<<"\nWhat would you like to do?\n";
             cout<<"1)   Open a user account\n";
             cout<<"2)   Close a user account\n";
@@ -38,26 +39,41 @@ start:
             
             switch(choice){
                 case 1:{
-                    cout<<"Please create a new ID number:";
+                uniqueID:
+                    cout<<"Please create a new unique ID number:\n";
                     int userID;
                     cin>>userID;
-                    cout<<"Enter the user's name:";
+                    if (man.custExists(userID)){
+                        cout<<"ID number already exists\n";
+                        goto uniqueID;
+                    }
+                    cout<<"Enter the user's name:\n";
                     string userName;
                     cin>>userName;
                     man.createUser(userID, userName);
                     break;
                 }
                 case 2:{
-                    cout<<"Please enter user's ID number:";
+                removeUser:
+                    cout<<"Please enter user's ID number:\n";
                     int userID;
                     cin>>userID;
+                    if (!man.custExists(userID)){
+                        cout<<"User does not exist\n";
+                        goto removeUser;
+                    }
                     man.deleteUser(userID);
                     break;
                 }
                 case 3:{
-                    cout<<"Please enter a user ID number:";
+                displayAccount:
+                    cout<<"Please enter user's ID number:\n";
                     int userID;
                     cin>>userID;
+                    if (!man.custExists(userID)){
+                        cout<<"User does not exist\n";
+                        goto displayAccount;
+                    }
                     cout<<man.dispAccount(userID)<<endl;
                     break;
                 }
@@ -115,6 +131,7 @@ start:
         SavingsAccount saveAccount = userAccount.getSavings();
             while(1){
             cust:
+                //system("clear");
                 cout<<"\nWhat would you like to do?\n";
                 cout<<"1)   Deposit\n";
                 cout<<"2)   Withdraw\n";
@@ -130,10 +147,11 @@ start:
                 {
                     case 1:{
                     deposit:
+                        //system("clear");
                         cout<<"To which account?\n";
-                        cout<<"1) Checking Account\n";
-                        cout<<"2) Savings Account\n";
-                        cout<<"3) Go back\n";
+                        cout<<"1)   Checking Account\n";
+                        cout<<"2)   Savings Account\n";
+                        cout<<"3)   Go back\n";
                         int account;
                         cin>>account;
                         switch(account){
@@ -167,10 +185,11 @@ start:
                     }
                     case 2:{
                     withdraw:
+                        //system("clear");
                         cout<<"From which account?\n";
-                        cout<<"1) Checking Account\n";
-                        cout<<"2) Savings Account\n";
-                        cout<<"3) Go back\n";
+                        cout<<"1)   Checking Account\n";
+                        cout<<"2)   Savings Account\n";
+                        cout<<"3)   Go back\n";
                         int account;
                         cin>>account;
                         switch(account){
@@ -216,10 +235,11 @@ start:
                     }
                     case 3:{
                     transfer:
+                        //system("clear");
                         cout<<"Which transfer would you like to do?\n";
-                        cout<<"1) Checking Account to Savings Account\n";
-                        cout<<"2) Savings Account to Chequing Assount\n";
-                        cout<<"3) Go back\n";
+                        cout<<"1)   Checking Account to Savings Account\n";
+                        cout<<"2)   Savings Account to Chequing Assount\n";
+                        cout<<"3)   Go back\n";
                         int account;
                         cin>>account;
                         switch(account){
@@ -229,10 +249,23 @@ start:
                                 cin>>amount;
                                 double newBalance1 = saveAccount.getBalance() + amount;
                                 double newBalance2 = checkAccount.getBalance() - amount;
-                                saveAccount.setBalance(newBalance1);
-                                checkAccount.setBalance(newBalance2);
-                                cout<<"Savings account is/remains: $"<<newBalance1<<endl;
-                                cout<<"Chequing account is/remains: $"<<newBalance2<<endl;
+                                if (newBalance2 < 0) {
+                                    cout<<"WARNING: Insufficient funds, transfer not possible\n";
+                                }
+                                else if (newBalance2 < 1000){
+                                    cout<<"WARNING: Balance will drop below $1000 and each following transaction will incur a  $2 fee.\n Do you wish to continue?\n 1) Yes\n";
+                                    int decision;
+                                    cin>>decision;
+                                    if (decision == 1){
+                                        checkAccount.setBalance(newBalance2 - 2);
+                                    }
+                                }
+                                else{
+                                    saveAccount.setBalance(newBalance1);
+                                    checkAccount.setBalance(newBalance2);
+                                }
+                                cout<<"Savings account is/remains: $"<<saveAccount.getBalance()<<endl;
+                                cout<<"Chequing account is/remains: $"<<checkAccount.getBalance()<<endl;
                                 break;
                             }
                             case 2:{
@@ -241,10 +274,15 @@ start:
                                 cin>>amount;
                                 double newBalance1 = checkAccount.getBalance() + amount;
                                 double newBalance2 = saveAccount.getBalance() - amount;
-                                checkAccount.setBalance(newBalance1);
-                                saveAccount.setBalance(newBalance2);
-                                cout<<"Chequing account is/remains: $"<<newBalance1<<endl;
-                                cout<<"Savings account is/remains: $"<<newBalance2<<endl;
+                                if (newBalance2 < 0) {
+                                    cout<<"WARNING: Insufficient funds, transfer not possible\n";
+                                }
+                                else{
+                                    checkAccount.setBalance(newBalance1);
+                                    saveAccount.setBalance(newBalance2);
+                                }
+                                cout<<"Savings account is/remains: $"<<saveAccount.getBalance()<<endl;
+                                cout<<"Chequing account is/remains: $"<<checkAccount.getBalance()<<endl;
                                 break;
                             }
                             case 3:{
@@ -259,10 +297,11 @@ start:
                     }
                     case 4:{
                     display:
+                        //system("clear:");
                         cout<<"Which account?\n";
-                        cout<<"1) Checking Account\n";
-                        cout<<"2) Savings Account\n";
-                        cout<<"3) Go back\n";
+                        cout<<"1)   Checking Account\n";
+                        cout<<"2)   Savings Account\n";
+                        cout<<"3)   Go back\n";
                         int account;
                         cin>>account;
                         switch(account){
@@ -304,7 +343,7 @@ start:
         }
     
     else{
-        cout<<"Invalid ID, try again"<<endl;
+        cout<<"Invalid ID, try again\n";
         goto start;
     }
     

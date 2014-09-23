@@ -7,8 +7,8 @@
 using namespace std;
 
 User::User(int userID, string userName){ //Constructor
-    userID = userID;
-    userName = userName;
+    this->userID = userID;
+    this->userName = userName;
 }
 
 int User::getID(){
@@ -43,6 +43,7 @@ Manager::Manager(int manID, string manName){
     userName = manName;
     userType = 1;
     //customers.reserve(1);
+    cout<<customers.size()<<endl;
 }
 
 int Manager::getType(){
@@ -50,24 +51,19 @@ int Manager::getType(){
 }
 
 void Manager::createUser(int uID, string userName){
-    if (custExists(uID))
-        cout<<"Login ID already exists"<<endl;
-    else{
         Customer newCust(uID, userName);
         //cout<<"User created: "<<newCust.getUserName()<<" "<<newCust.getID();
         customers.push_back(newCust);
         cout<<"Customer account opened successfully"<<endl;
-    }
+        cout<<customers.size()<<endl;
 }
 
 void Manager::deleteUser(int custID){
-    if (custExists(custID)) {
-        vector<Customer>::iterator it;
-        for (it=customers.begin(); it!=customers.end(); ++it){
-            if (it->getID() == custID){
-                customers.erase(it);
-                cout<<"Customer with loginID "<<custID<<" deleted";
-            }
+    vector<Customer>::iterator it;
+    for (it=customers.begin(); it!=customers.end(); ++it){
+        if (it->getID() == custID){
+            customers.erase(it);
+            cout<<"Customer with loginID "<<custID<<" deleted";
         }
     }
 }
@@ -93,12 +89,8 @@ bool Manager::custExists(int loginID){
 }
 
 string Manager::dispAccount(int uID){
-    string output = "Nothing";
-    if (custExists(uID)){
-        Customer foundCust = findCust(uID);
-        output = foundCust.getUserName();
-        return output;
-    }
+    Customer foundCust = findCust(uID);
+    string output = "Username: " + foundCust.getUserName();
     return output;
 }
 
