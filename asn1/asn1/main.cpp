@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <ctime>
+
 #include "account.h"
 #include "user.h"
 
@@ -55,6 +56,10 @@ start:
                     cout<<"\nPlease create a new unique ID number:\n";
                     int userID;
                     cin>>userID;
+                    
+                    if(tracer)
+                        traceExecution("custExists", loginID);
+                    
                     if (man.custExists(userID)){
                         cout<<"ID number already exists\n";
                         goto uniqueID;
@@ -79,6 +84,10 @@ start:
                             cout<<"User does not exist\n";
                             goto removeUser;
                         }
+                        
+                        if(tracer)
+                            traceExecution("deletUser", loginID);
+                        
                         man.deleteUser(userID);
                         break;
                     }
@@ -97,6 +106,10 @@ start:
                             cout<<"User does not exist\n";
                             goto displayAccount;
                         }
+                        
+                        if(tracer)
+                            traceExecution("dispAccount", loginID);
+                        
                         man.dispAccount(userID);
                     }
                     break;
@@ -107,6 +120,10 @@ start:
                         break;
                     }
                     else{
+                        
+                        if(tracer)
+                            traceExecution("dispAllAccounts", loginID);
+                        
                         man.dispAllAccounts();
                     }
                     break;
@@ -127,7 +144,6 @@ start:
     else if(loginID==main.getID()){
         int choice;
         
-        //system("clear");
         if(tracer==0)
             cout<<"1)   Turn on execution trace\n";
         else
@@ -147,14 +163,12 @@ start:
             default:{
                 cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
             }
-                break;
         }
         goto start;
     }
     
     else if(man.custExists(loginID)){
         Customer userAccount = man.findCust(loginID);
-//        if(userAccount.getChequing().getType() == 0)
         ChequingAccount checkAccount = userAccount.getChequing();
         SavingsAccount saveAccount = userAccount.getSavings();
             while(1){
@@ -171,6 +185,7 @@ start:
                 cout<<"8)   Exit\n";
                 int choice;
                 cin>>choice;
+                
                 switch(choice)
                 {
                     case 1:{
@@ -188,6 +203,10 @@ start:
                                 int amount;
                                 cin>>amount;
                                 double newBalance = checkAccount.getBalance() + amount;
+                                
+                                if(tracer)
+                                    traceExecution("setCheckBalance", loginID);
+                                
                                 checkAccount.setBalance(newBalance);
                                 cout<<"New balance is: $"<<newBalance<<endl;
                                 break;
@@ -197,6 +216,10 @@ start:
                                 int amount;
                                 cin>>amount;
                                 double newBalance = saveAccount.getBalance() + amount;
+                                
+                                if(tracer)
+                                    traceExecution("setSavingsBalance", loginID);
+                                
                                 saveAccount.setBalance(newBalance);
                                 cout<<"New balance is: $"<<newBalance<<endl;
                                 break;
@@ -225,15 +248,31 @@ start:
                                 cout<<"\nHow much would you like to withdraw?\n";
                                 int amount;
                                 cin>>amount;
+                                
+                                if(tracer)
+                                    traceExecution("setCheckBalance", loginID);
+                                
                                 double newBalance = checkAccount.getBalance() - amount;
                                 if (newBalance < 0) {
+                                    
+                                    if(tracer)
+                                        traceExecution("insufficientFunds", loginID);
+                                    
                                     cout<<"WARNING: Insufficient funds, withdrawal not possible\n";
                                 }
                                 else if (newBalance < 1000){
+                                    
+                                    if(tracer)
+                                        traceExecution("lowBalanceWarning", loginID);
+                                    
                                     cout<<"WARNING: Balance will drop below $1000 and each following transaction will incur a  $2 fee.\n Do you wish to continue?\n 1) Yes\n";
                                     int decision;
                                     cin>>decision;
                                     if (decision == 1){
+                                        
+                                        if(tracer)
+                                            traceExecution("setCheckBalanceAfterWarning", loginID);
+                                        
                                         checkAccount.setBalance(newBalance - 2);
                                     }
                                 }
@@ -246,6 +285,10 @@ start:
                                 cout<<"\nHow much would you like to withdraw?\n";
                                 int amount;
                                 cin>>amount;
+                                
+                                if(tracer)
+                                    traceExecution("savingsWithdrawal", loginID);
+                                
                                 double newBalance = saveAccount.getBalance() - amount;
                                 saveAccount.setBalance(newBalance);
                                 cout<<"New balance is: $"<<newBalance<<endl;
@@ -275,20 +318,37 @@ start:
                                 cout<<"\nHow much would you like to transfer?\n";
                                 int amount;
                                 cin>>amount;
+                                
                                 double newBalance1 = saveAccount.getBalance() + amount;
                                 double newBalance2 = checkAccount.getBalance() - amount;
                                 if (newBalance2 < 0) {
+                                    
+                                    if(tracer)
+                                        traceExecution("insufficientFunds", loginID);
+                                    
                                     cout<<"WARNING: Insufficient funds, transfer not possible\n";
                                 }
                                 else if (newBalance2 < 1000){
+                                    
+                                    if(tracer)
+                                        traceExecution("lowBalanceWarning", loginID);
+                                    
                                     cout<<"WARNING: Balance will drop below $1000 and each following transaction will incur a  $2 fee.\n Do you wish to continue?\n 1) Yes\n";
                                     int decision;
                                     cin>>decision;
                                     if (decision == 1){
+                                        
+                                        if(tracer)
+                                            traceExecution("setCheckBalanceAfterWarning", loginID);
+                                        
                                         checkAccount.setBalance(newBalance2 - 2);
                                     }
                                 }
                                 else{
+                                    
+                                    if(tracer)
+                                        traceExecution("transferCheckToSave", loginID);
+                                    
                                     saveAccount.setBalance(newBalance1);
                                     checkAccount.setBalance(newBalance2);
                                 }
@@ -300,12 +360,22 @@ start:
                                 cout<<"\nHow much would you like to transfer?\n";
                                 int amount;
                                 cin>>amount;
+                                
                                 double newBalance1 = checkAccount.getBalance() + amount;
                                 double newBalance2 = saveAccount.getBalance() - amount;
                                 if (newBalance2 < 0) {
+                                    
+                                    if(tracer)
+                                        traceExecution("insufficientFunds", loginID);
+
+                                    
                                     cout<<"WARNING: Insufficient funds, transfer not possible\n";
                                 }
                                 else{
+                                    
+                                    if(tracer)
+                                        traceExecution("transferSaveToCheck", loginID);
+                                    
                                     checkAccount.setBalance(newBalance1);
                                     saveAccount.setBalance(newBalance2);
                                 }
@@ -334,10 +404,18 @@ start:
                         cin>>account;
                         switch(account){
                             case 1:{
+                                
+                                if(tracer)
+                                    traceExecution("displayChecking", loginID);
+                                
                                 cout<<"\nCurrent balance is: $"<<checkAccount.getBalance()<<endl;
                                 break;
                             }
                             case 2:{
+                                
+                                if(tracer)
+                                    traceExecution("displaySavings", loginID);
+                                
                                 cout<<"\nCurrent balance is: $"<<saveAccount.getBalance()<<endl;
                                 break;
                             }
