@@ -256,7 +256,7 @@ start:
                                     traceExecution("setCheckBalance", loginID);
                                 
                                 double newBalance = checkAccount.getBalance() - amount; //Calculating new account balance
-                                if (newBalance < 0) { //If there is a negative balance
+                                if (newBalance < 0) { //If there is a negative balance in the checking account
                                     
                                     if(tracer) //If tracer is enabled, call it with insufficientFunds string, and current login ID
                                         traceExecution("insufficientFunds", loginID);
@@ -294,8 +294,18 @@ start:
                                     traceExecution("savingsWithdrawal", loginID);
                                 
                                 double newBalance = saveAccount.getBalance() - amount; //Calculating new account balance
-                                saveAccount.setBalance(newBalance); //Setting new account balance
-                                cout<<"New balance is: $"<<newBalance<<endl; //Displaying new account balance
+                                
+                                if(newBalance < 0){ //If there is a negative balance in the saving account
+                                    
+                                    if(tracer) //If tracer is enabled, call it with insufficientFunds string, and current login ID
+                                        traceExecution("insufficientFunds", loginID);
+                                    
+                                    cout<<"WARNING: Insufficient funds, withdrawal not possible\n"; //Print a warning stating insufficient funds, balance does not change
+                                }
+                                else
+                                    saveAccount.setBalance(newBalance); //Setting new account balance
+                                
+                                cout<<"New balance is/remains: $"<<newBalance<<endl; //Displaying new account balance
                                 break;
                             }
                             case 3:{ //Go back a menu
@@ -318,42 +328,42 @@ start:
                         int account;
                         cin>>account;
                         switch(account){
-                            case 1:{
+                            case 1:{ //Transfer from checking to savings account
                                 cout<<"\nHow much would you like to transfer?\n";
                                 int amount;
                                 cin>>amount;
                                 
-                                double newBalance1 = saveAccount.getBalance() + amount;
-                                double newBalance2 = checkAccount.getBalance() - amount;
-                                if (newBalance2 < 0) {
+                                double newBalance1 = saveAccount.getBalance() + amount; //Calculating new saving account balance
+                                double newBalance2 = checkAccount.getBalance() - amount; //Calculating new checking account balance
+                                if (newBalance2 < 0) { //If there is a negative balance in the checking account
                                     
-                                    if(tracer)
+                                    if(tracer) //If tracer is enabled, call it with inssuficientFunds string, and current login ID
                                         traceExecution("insufficientFunds", loginID);
                                     
-                                    cout<<"WARNING: Insufficient funds, transfer not possible\n";
+                                    cout<<"WARNING: Insufficient funds, transfer not possible\n"; //Print a warning stating insufficient funds, balance does not change
                                 }
-                                else if (newBalance2 < 1000){
+                                else if (newBalance2 < 1000){ //If the new checking balance is below 1000
                                     
-                                    if(tracer)
+                                    if(tracer) //If tracer is enabled, call it with lowBalanceWarning string, and current login ID
                                         traceExecution("lowBalanceWarning", loginID);
                                     
-                                    cout<<"WARNING: Balance will drop below $1000 and each following transaction will incur a  $2 fee.\n Do you wish to continue?\n 1) Yes\n";
+                                    cout<<"WARNING: Balance will drop below $1000 and each following transaction will incur a  $2 fee.\n Do you wish to continue?\n 1) Yes\n"; //Print low balance warning
                                     int decision;
                                     cin>>decision;
-                                    if (decision == 1){
+                                    if (decision == 1){ //Customer may decide to continue or abort
                                         
-                                        if(tracer)
+                                        if(tracer) //If tracer is enabled, call it with setCheckBalanceAfterWarning string, and current login ID
                                             traceExecution("setCheckBalanceAfterWarning", loginID);
                                         
-                                        checkAccount.setBalance(newBalance2 - 2);
+                                        checkAccount.setBalance(newBalance2 - 2); //Set new balance with a $2 fee
                                     }
                                 }
                                 else{
                                     
-                                    if(tracer)
+                                    if(tracer) //If tracer is enabled, call it with transferCheckToSave string, and current login ID
                                         traceExecution("transferCheckToSave", loginID);
                                     
-                                    saveAccount.setBalance(newBalance1);
+                                    saveAccount.setBalance(newBalance1); //
                                     checkAccount.setBalance(newBalance2);
                                 }
                                 cout<<"Savings account is/remains: $"<<saveAccount.getBalance()<<endl;
