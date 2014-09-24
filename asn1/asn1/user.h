@@ -2,6 +2,7 @@
 #define USER_H
 
 #include <string>
+#include <list>
 #include <vector>
 #include "account.h"
 
@@ -22,13 +23,18 @@ public:
 };
 
 class Customer: public User {
-	ChequingAccount checkingsAcc;
-    SavingsAccount savingsAcc;
+	std::list<Account> accounts;
+    //ChequingAccount checkingsAcc;
+    //SavingsAccount savingsAcc;
 
 public:
-    Customer(int, string);
-    ChequingAccount getChequing();
-    SavingsAccount getSavings();
+    Customer(int, string, int);
+    std::list<Account> getAccounts();
+    bool hasChequing();
+    bool hasSavings();
+    Account getAccount(int);
+    //ChequingAccount getChequing();
+    //SavingsAccount getSavings();
 };
 
 

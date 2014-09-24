@@ -170,8 +170,8 @@ start:
     
     else if(man.custExists(loginID)){ //If the ID does not match manager's/mainenence's then we check if it is an existing customer
         Customer userAccount = man.findCust(loginID); //If the customer exists, we load the customer object
-        ChequingAccount checkAccount = userAccount.getChequing(); //Getting their chequing account
-        SavingsAccount saveAccount = userAccount.getSavings(); //Getting their savings account
+        //ChequingAccount checkAccount = userAccount.getChequing(); //Getting their chequing account
+        //SavingsAccount saveAccount = userAccount.getSavings(); //Getting their savings account
         
             while(1){
             cust: //Customer option menu
@@ -197,34 +197,63 @@ start:
                         cout<<"1)   Checking Account\n";
                         cout<<"2)   Savings Account\n";
                         cout<<"3)   Go back\n";
-                        int account;
-                        cin>>account;
+                        int accountType;
+                        cin>>accountType;
+                        Account* account = nullptr;
+                        if (accountType == 1) {
+                            if (userAccount.hasChequing()){
+                                list<Account>::iterator it;
+                                for (it = userAccount.getAccounts().begin(); it != userAccount.getAccounts().end(); ++it){
+                                    if (it->getType() == 0) {
+                                        account = &*it;
+                                    }
+                                }
+                            }
+                            else{
+                                cout<<"Account does not exist!\n";
+                                goto deposit;
+                            }
+                        }
+                        else if (accountType == 2) {
+                            if (userAccount.hasSavings()){
+                                list<Account>::iterator it;
+                                for (it = userAccount.getAccounts().begin(); it != userAccount.getAccounts().end(); ++it){
+                                    if (it->getType() == 0) {
+                                        account = &*it;
+                                    }
+                                }
+                            }
+                            else{
+                                cout<<"Account does not exist!\n";
+                                goto deposit;
+                            }
+                        }
                         
-                        switch(account){
+                        switch(accountType){
                             case 1:{ //Deposit into checking account
                                 cout<<"\nHow much would you like to deposit?\n";
                                 int amount;
                                 cin>>amount;
-                                double newBalance = checkAccount.getBalance() + amount; //Calculating new account balance
+                                double newBalance = account->getBalance() + amount; //Calculating new account balance
                                 
                                 if(tracer) //If tracer is enabled, call it with setCHeckBalance string, and current login ID
                                     traceExecution("setCheckBalance", loginID);
                                 
-                                checkAccount.setBalance(newBalance); //Setting new account balance
-                                cout<<"New balance is: $"<<newBalance<<endl; //Displaying new account balance
+                                account->setBalance(newBalance); //Setting new account balance
+                                cout<<"New balance is: $"<<account->getBalance()<<endl; //Displaying new account balance
                                 break;
                             }
                             case 2:{ //Deposit into savings account
                                 cout<<"\nHow much would you like to deposit?\n";
                                 int amount;
                                 cin>>amount;
-                                double newBalance = saveAccount.getBalance() + amount; //Calculating new account balance
+                                double newBalance = account->getBalance() + amount; //Calculating new account balance
                                 
                                 if(tracer) //If tracer is enabled, call it with setSavingsBalance string, and current login ID
                                     traceExecution("setSavingsBalance", loginID);
                                 
-                                saveAccount.setBalance(newBalance); //Setting new account balance
-                                cout<<"New balance is: $"<<newBalance<<endl; //Displaying new acount balance
+                                account->setBalance(newBalance); //Setting new account balance
+                                cout<<"New balance is: $"<<account->getBalance()<<endl; //Displaying new acount balance
                                 break;
                             }
                             case 3:{ //Go back a menu
@@ -246,6 +275,37 @@ start:
                         cout<<"3)   Go back\n";
                         int account;
                         cin>>account;
+                        
+                        Account *custAccount = nullptr;
+                        if (account == 1) {
+                            if (userAccount.hasChequing()){
+                                list<Account>::iterator it;
+                                for (it = userAccount.getAccounts().begin(); it != userAccount.getAccounts().end(); ++it){
+                                    if (it->getType() == 0) {
+                                        custAccount = &*it;
+                                    }
+                                }
+                            }
+                            else{
+                                cout<<"Account does not exist!\n";
+                                goto deposit;
+                            }
+                        }
+                        else if (account == 2) {
+                            if (userAccount.hasSavings()){
+                                list<Account>::iterator it;
+                                for (it = userAccount.getAccounts().begin(); it != userAccount.getAccounts().end(); ++it){
+                                    if (it->getType() == 0) {
+                                        custAccount = &*it;
+                                    }
+                                }
+                            }
+                            else{
+                                cout<<"Account does not exist!\n";
+                                goto deposit;
+                            }
+                        }
+                        
                         switch(account){
                             case 1:{ //Withdraw from Checking account
                                 cout<<"\nHow much would you like to withdraw?\n";
@@ -255,7 +315,7 @@ start:
                                 if(tracer) //If tracer is enabled, call it with setCheckBalance string, and current login ID
                                     traceExecution("setCheckBalance", loginID);
                                 
-                                double newBalance = checkAccount.getBalance() - amount; //Calculating new account balance
+                                double newBalance = custAccount->getBalance() - amount; //Calculating new account balance
                                 if (newBalance < 0) { //If there is a negative balance in the checking account
                                     
                                     if(tracer) //If tracer is enabled, call it with insufficientFunds string, and current login ID
@@ -276,13 +336,13 @@ start:
                                         if(tracer) //If tracer is enabled, call it with setCheckBalanceAfterWarning string, and current login ID
                                             traceExecution("setCheckBalanceAfterWarning", loginID);
                                         
-                                        checkAccount.setBalance(newBalance - 2); //Set new balance and charge a $2 fee
+                                        custAccount->setBalance(newBalance - 2); //Set new balance and charge a $2 fee
                                     }
                                 }
                                 else //If there is enough money to withdraw, and the balance remains above 1000
-                                    checkAccount.setBalance(newBalance); //Setting new balance
+                                    custAccount->setBalance(newBalance); //Setting new balance
                                 
-                                cout<<"Chequing account balance is/remains: $"<<checkAccount.getBalance()<<endl; //Displaying new balance
+                                cout<<"Chequing account balance is/remains: $"<<custAccount->getBalance()<<endl; //Displaying new balance
                                 break;
                             }
                             case 2:{ //Withdraw from savings account
@@ -293,7 +353,7 @@ start:
                                 if(tracer) //If tracer is enabled, call it with savingsWithrawal string, and current login ID
                                     traceExecution("savingsWithdrawal", loginID);
                                 
-                                double newBalance = saveAccount.getBalance() - amount; //Calculating new account balance
+                                double newBalance = custAccount->getBalance() - amount; //Calculating new account balance
                                 
                                 if(newBalance < 0){ //If there is a negative balance in the saving account
                                     
@@ -303,7 +363,7 @@ start:
                                     cout<<"WARNING: Insufficient funds, withdrawal not possible\n"; //Print a warning stating insufficient funds, balance does not change
                                 }
                                 else
-                                    saveAccount.setBalance(newBalance); //Setting new account balance
+                                    custAccount->setBalance(newBalance); //Setting new account balance
                                 
                                 cout<<"New balance is/remains: $"<<newBalance<<endl; //Displaying new account balance
                                 break;
@@ -321,20 +381,40 @@ start:
                     case 3:{
                     transfer: //Customer chooses to transfer money
                      
+                        if (!userAccount.hasChequing() || !userAccount.hasSavings()) {
+                            cout<<"Chequing Account and Savings Account required to do a transfer\n";
+                            goto cust;
+                        }
+                        
                         cout<<"\nWhich transfer would you like to do?\n"; //Asking what type of transfer the customer would like
                         cout<<"1)   Checking Account to Savings Account\n";
                         cout<<"2)   Savings Account to Chequing Assount\n";
                         cout<<"3)   Go back\n";
                         int account;
                         cin>>account;
+                        
+                        list<Account>::iterator it;
+                        Account *checkAccount = nullptr;
+                        for (it = userAccount.getAccounts().begin(); it != userAccount.getAccounts().end(); ++it){
+                            if (it->getType() == 0) {
+                                checkAccount = &*it;
+                            }
+                        }
+      
+                        Account *saveAccount = nullptr;
+                        for (it = userAccount.getAccounts().begin(); it != userAccount.getAccounts().end(); ++it){
+                            if (it->getType() == 1) {
+                                saveAccount = &*it;
+                            }
+                        }
                         switch(account){
                             case 1:{ //Transfer from checking to savings account
                                 cout<<"\nHow much would you like to transfer?\n";
                                 int amount;
                                 cin>>amount;
                                 
-                                double newBalance1 = saveAccount.getBalance() + amount; //Calculating new saving account balance
-                                double newBalance2 = checkAccount.getBalance() - amount; //Calculating new checking account balance
+                                double newBalance1 = saveAccount->getBalance() + amount; //Calculating new saving account balance
+                                double newBalance2 = checkAccount->getBalance() - amount; //Calculating new checking account balance
                                 if (newBalance2 < 0) { //If there is a negative balance in the checking account
                                     
                                     if(tracer) //If tracer is enabled, call it with inssuficientFunds string, and current login ID
@@ -355,7 +435,7 @@ start:
                                         if(tracer) //If tracer is enabled, call it with setCheckBalanceAfterWarning string, and current login ID
                                             traceExecution("setCheckBalanceAfterWarning", loginID);
                                         
-                                        checkAccount.setBalance(newBalance2 - 2); //Set new balance with a $2 fee
+                                        checkAccount->setBalance(newBalance2 - 2); //Set new balance with a $2 fee
                                     }
                                 }
                                 else{
@@ -363,11 +443,11 @@ start:
                                     if(tracer) //If tracer is enabled, call it with transferCheckToSave string, and current login ID
                                         traceExecution("transferCheckToSave", loginID);
                                     
-                                    saveAccount.setBalance(newBalance1); //
-                                    checkAccount.setBalance(newBalance2);
+                                    saveAccount->setBalance(newBalance1); //
+                                    checkAccount->setBalance(newBalance2);
                                 }
-                                cout<<"Savings account is/remains: $"<<saveAccount.getBalance()<<endl;
-                                cout<<"Chequing account is/remains: $"<<checkAccount.getBalance()<<endl;
+                                cout<<"Savings account is/remains: $"<<saveAccount->getBalance()<<endl;
+                                cout<<"Chequing account is/remains: $"<<checkAccount->getBalance()<<endl;
                                 break;
                             }
                             case 2:{
@@ -375,8 +455,8 @@ start:
                                 int amount;
                                 cin>>amount;
                                 
-                                double newBalance1 = checkAccount.getBalance() + amount;
-                                double newBalance2 = saveAccount.getBalance() - amount;
+                                double newBalance1 = checkAccount->getBalance() + amount;
+                                double newBalance2 = saveAccount->getBalance() - amount;
                                 if (newBalance2 < 0) {
                                     
                                     if(tracer)
@@ -390,11 +470,11 @@ start:
                                     if(tracer)
                                         traceExecution("transferSaveToCheck", loginID);
                                     
-                                    checkAccount.setBalance(newBalance1);
-                                    saveAccount.setBalance(newBalance2);
+                                    checkAccount->setBalance(newBalance1);
+                                    saveAccount->setBalance(newBalance2);
                                 }
-                                cout<<"Savings account is/remains: $"<<saveAccount.getBalance()<<endl;
-                                cout<<"Chequing account is/remains: $"<<checkAccount.getBalance()<<endl;
+                                cout<<"Savings account is/remains: $"<<saveAccount->getBalance()<<endl;
+                                cout<<"Chequing account is/remains: $"<<checkAccount->getBalance()<<endl;
                                 break;
                             }
                             case 3:{
@@ -416,13 +496,43 @@ start:
                         cout<<"3)   Go back\n";
                         int account;
                         cin>>account;
+                        
+                        Account *custAccount = nullptr;
+                        if (account == 1) {
+                            if (userAccount.hasChequing()){
+                                list<Account>::iterator it;
+                                for (it = userAccount.getAccounts().begin(); it != userAccount.getAccounts().end(); ++it){
+                                    if (it->getType() == 0) {
+                                        custAccount = &*it;
+                                    }
+                                }
+                            }
+                            else{
+                                cout<<"Account does not exist!\n";
+                                goto display;
+                            }
+                        }
+                        else if (account == 2) {
+                            if (userAccount.hasSavings()){
+                                list<Account>::iterator it;
+                                for (it = userAccount.getAccounts().begin(); it != userAccount.getAccounts().end(); ++it){
+                                    if (it->getType() == 0) {
+                                        custAccount = &*it;
+                                    }
+                                }
+                            }
+                            else{
+                                cout<<"Account does not exist!\n";
+                                goto display;
+                            }
+                        }
                         switch(account){
                             case 1:{
                                 
                                 if(tracer)
                                     traceExecution("displayChecking", loginID);
                                 
-                                cout<<"\nCurrent balance is: $"<<checkAccount.getBalance()<<endl;
+                                cout<<"\nCurrent balance is: $"<<custAccount->getBalance()<<endl;
                                 break;
                             }
                             case 2:{
@@ -430,7 +540,7 @@ start:
                                 if(tracer)
                                     traceExecution("displaySavings", loginID);
                                 
-                                cout<<"\nCurrent balance is: $"<<saveAccount.getBalance()<<endl;
+                                cout<<"\nCurrent balance is: $"<<custAccount->getBalance()<<endl;
                                 break;
                             }
                             case 3:{

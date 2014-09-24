@@ -24,19 +24,92 @@ int User::getUserType(){
 }
 
 
-Customer::Customer(int custID, string custName){
+Customer::Customer(int custID, string custName, int accSetup){
     userID = custID;
     userName = custName;
     userType = 0;
+    if (accSetup == 1) {
+        ChequingAccount checkAccount;
+        accounts.push_back(checkAccount);
+    }
+    else if (accSetup == 2) {
+        SavingsAccount saveAccount;
+        accounts.push_back(saveAccount);
+    }
+    else if (accSetup == 3) {
+        ChequingAccount checkAccount;
+        SavingsAccount saveAccount;
+        accounts.push_back(checkAccount);
+        accounts.push_back(saveAccount);
+    }
+    cout<<"account list size: "<<accounts.size()<<endl;
 }
 
-ChequingAccount Customer::getChequing(){
+list<Account> Customer::getAccounts(){
+    return accounts;
+}
+
+bool Customer::hasChequing(){
+    bool result = 0;
+    list<Account>::iterator it;
+    for (it = accounts.begin(); it != accounts.end(); ++it){
+        if (it->getType() == 0) {
+            result = 1;
+        }
+    }
+    return result;
+}
+
+bool Customer::hasSavings(){
+    bool result = 0;
+    list<Account>::iterator it;
+    for (it = accounts.begin(); it != accounts.end(); ++it){
+        if (it->getType() == 1) {
+            result = 1;
+        }
+    }
+    return result;
+}
+
+Account Customer::getAccount(int accountType){
+    Account account;
+    if (accountType == 0) {
+        if (hasChequing()) {
+            list<Account>::iterator it;
+            for (it = accounts.begin(); it != accounts.end(); ++it){
+                if (it->getType() == 0) {
+                    account = *it;
+                }
+            }
+        }
+    }
+    else if (accountType == 1) {
+        if (hasSavings()) {
+            list<Account>::iterator it;
+            for (it = accounts.begin(); it != accounts.end(); ++it){
+                if (it->getType() == 1) {
+                    account = *it;
+                }
+            }
+        }
+    }
+    return account;
+}
+
+/*ChequingAccount Customer::getChequing(){
+    ChequingAccount check;
+    list<Account>::iterator it;
+    for (it = accounts.begin(); it != accounts.end(); ++it){
+        if (it->getType() == 0) {
+            check = *it;
+        }
+    }
     return checkingsAcc;
-}
+}*/
 
-SavingsAccount Customer::getSavings(){
-    return savingsAcc;
-}
+//SavingsAccount Customer::getSavings(){
+ //   return savingsAcc;
+//}
 
 Manager::Manager(int manID, string manName){
     userID = manID;
@@ -51,11 +124,15 @@ int Manager::getType(){
 }
 
 void Manager::createUser(int uID, string userName){
-        Customer newCust(uID, userName);
-        //cout<<"User created: "<<newCust.getUserName()<<" "<<newCust.getID();
-        customers.push_back(newCust);
-        cout<<"Customer account opened successfully!"<<endl;
-        //cout<<customers.size()<<endl;
+    cout<<"\nWhat does the customer require?\n";
+    cout<<"1)   Chequing Account\n";
+    cout<<"2)   Savings Account\n";
+    cout<<"3)   Chequing and Savings Accounts";
+    int accSetup;
+    cin>>accSetup;
+    Customer newCust(uID, userName, accSetup);
+    customers.push_back(newCust);
+    cout<<"Customer account opened successfully!"<<endl;
 }
 
 void Manager::deleteUser(int custID){
@@ -93,7 +170,17 @@ bool Manager::custExists(int loginID){
 
 void Manager::dispAccount(int uID){
     Customer foundCust = findCust(uID);
-    cout<<"\nUsername: " << foundCust.getUserName() << "\nID Number: " << foundCust.getID() << "\nChequing Account Balance: $" << foundCust.getChequing().getBalance() << "\nSavings Account Balance: $" << foundCust.getSavings().getBalance() << endl;
+    list<Account>::iterator it;
+    cout<<"\nUsername: " << foundCust.getUserName() << "\nID Number: " << foundCust.getID()<<endl;
+    for (it = foundCust.getAccounts().begin(); it != foundCust.getAccounts().end(); ++it){
+        if (it->getType() == 0) {
+            cout<<"\nChequing Account Balance: $"<<it->getBalance()<<endl;
+        }
+        else{
+            cout<<"\nSavings Account Balance: $"<<it->getBalance()<<endl;
+        }
+    }
+    
 }
 
 void Manager::dispAllAccounts(){
