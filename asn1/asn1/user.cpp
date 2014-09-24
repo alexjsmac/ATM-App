@@ -39,8 +39,8 @@ Customer::Customer(int custID, string custName, int accSetup){
     else if (accSetup == 3) {
         ChequingAccount checkAccount;
         SavingsAccount saveAccount;
-        accounts.push_back(checkAccount);
         accounts.push_back(saveAccount);
+        accounts.push_front(checkAccount);
     }
     cout<<"account list size: "<<accounts.size()<<endl;
 }
@@ -127,7 +127,7 @@ void Manager::createUser(int uID, string userName){
     cout<<"\nWhat does the customer require?\n";
     cout<<"1)   Chequing Account\n";
     cout<<"2)   Savings Account\n";
-    cout<<"3)   Chequing and Savings Accounts";
+    cout<<"3)   Chequing and Savings Accounts\n";
     int accSetup;
     cin>>accSetup;
     Customer newCust(uID, userName, accSetup);
@@ -170,17 +170,26 @@ bool Manager::custExists(int loginID){
 
 void Manager::dispAccount(int uID){
     Customer foundCust = findCust(uID);
-    list<Account>::iterator it;
+    Account* account = nullptr;
     cout<<"\nUsername: " << foundCust.getUserName() << "\nID Number: " << foundCust.getID()<<endl;
-    for (it = foundCust.getAccounts().begin(); it != foundCust.getAccounts().end(); ++it){
-        if (it->getType() == 0) {
-            cout<<"\nChequing Account Balance: $"<<it->getBalance()<<endl;
+    if (foundCust.hasChequing()){
+        list<Account>::iterator it;
+        for (it = foundCust.getAccounts().begin(); it != foundCust.getAccounts().end(); ++it){
+            if (it->getType() == 0) {
+                account = &*it;
+            }
         }
-        else{
-            cout<<"\nSavings Account Balance: $"<<it->getBalance()<<endl;
-        }
+        cout<<"\nChequing Account Balance: $"<<account->getBalance()<<endl;
     }
-    
+    if (foundCust.hasSavings()){
+        list<Account>::iterator it;
+        for (it = foundCust.getAccounts().begin(); it != foundCust.getAccounts().end(); ++it){
+            if (it->getType() == 1) {
+                account = &*it;
+            }
+        }
+        cout<<"\nSavings Account Balance: $"<<account->getBalance()<<endl;
+    }
 }
 
 void Manager::dispAllAccounts(){
