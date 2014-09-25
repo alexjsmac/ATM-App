@@ -23,16 +23,17 @@ public:
 };
 
 class Customer: public User {
-	std::list<Account> accounts;
+	//std::list<Account> accounts;
     //ChequingAccount checkingsAcc;
     //SavingsAccount savingsAcc;
+    Account bankAccounts[2] = {};
 
 public:
     Customer(int, string, int);
-    std::list<Account> getAccounts();
+    //std::list<Account> getAccounts();
     bool hasChequing();
     bool hasSavings();
-    Account getAccount(int);
+    Account getAccount(int, int);
     //ChequingAccount getChequing();
     //SavingsAccount getSavings();
 };

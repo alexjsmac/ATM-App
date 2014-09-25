@@ -29,33 +29,30 @@ Customer::Customer(int custID, string custName, int accSetup){
     userName = custName;
     userType = 0;
     if (accSetup == 1) {
-        ChequingAccount checkAccount;
-        accounts.push_back(checkAccount);
+        ChequingAccount checkAccount(custID);
+        bankAccounts[0] = checkAccount;
     }
     else if (accSetup == 2) {
-        SavingsAccount saveAccount;
-        accounts.push_back(saveAccount);
+        SavingsAccount saveAccount(custID);
+        bankAccounts[1] = saveAccount;
     }
     else if (accSetup == 3) {
-        ChequingAccount checkAccount;
-        SavingsAccount saveAccount;
-        accounts.push_back(saveAccount);
-        accounts.push_front(checkAccount);
+        ChequingAccount checkAccount(custID);
+        SavingsAccount saveAccount(custID);
+        bankAccounts[0] = checkAccount;
+        bankAccounts[1] = saveAccount;
     }
-    cout<<"account list size: "<<accounts.size()<<endl;
+    //cout<<"account list size: "<<accounts.size()<<endl;
 }
 
-list<Account> Customer::getAccounts(){
+/*list<Account> Customer::getAccounts(){
     return accounts;
-}
+}*/
 
 bool Customer::hasChequing(){
-    bool result = 0;
-    list<Account>::iterator it;
-    for (it = accounts.begin(); it != accounts.end(); ++it){
-        if (it->getType() == 0) {
-            result = 1;
-        }
+    bool result = false;
+    if (bankAccounts[0].getType() == 0) {
+        result = true;
     }
     return result;
 }
@@ -71,8 +68,8 @@ bool Customer::hasSavings(){
     return result;
 }
 
-Account Customer::getAccount(int accountType){
-    Account account;
+Account Customer::getAccount(int ownerID, int accountType){
+    //Account account;
     if (accountType == 0) {
         if (hasChequing()) {
             list<Account>::iterator it;

@@ -2,13 +2,17 @@
 #include <string>
 #include "account.h"
 
-Account::Account(){
+Account::Account(int ownerID){
 	balance = 0;
-	type = 0;
+    this->ownerID = ownerID;
 }
 
 double Account::getBalance(){
        return balance;
+}
+
+void Account::setBalance(double newBal){
+    balance = newBal;
 }
 
 bool Account::getType(){
@@ -19,16 +23,14 @@ void Account::setType(bool newType){
     type = newType;
 }
 
-void Account::setBalance(double newBal){
-    balance = newBal;
+int Account::getOwnerID(){
+    return ownerID;
 }
 
-ChequingAccount::ChequingAccount(){
-		this->setBalance(0);
-        this->setType(0);
+ChequingAccount::ChequingAccount(int ownerID){
+    type = 0;
 };
 
-SavingsAccount::SavingsAccount(){
-	this->setBalance(0);
-	this->setType(1);
+SavingsAccount::SavingsAccount(int ownerID){
+    type = 1;
 };
