@@ -28,9 +28,13 @@ int Account::getOwnerID(){
 }
 
 ChequingAccount::ChequingAccount(int ownerID){
+    this->ownerID = ownerID;
+    balance = 0;
     type = 0;
 };
 
 SavingsAccount::SavingsAccount(int ownerID){
+    this->ownerID = ownerID;
+    balance = 0;
     type = 1;
 };

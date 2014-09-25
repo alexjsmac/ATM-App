@@ -33,7 +33,9 @@ public:
     //std::list<Account> getAccounts();
     bool hasChequing();
     bool hasSavings();
-    Account getAccount(int, int);
+    Account * getAccount(int);
+    void setBalance(int, double);
+    double getBalance(int);
     //ChequingAccount getChequing();
     //SavingsAccount getSavings();
 };
@@ -45,7 +47,7 @@ class Manager: public User{
 public:
     Manager(int, string);
     int getType();
-    void createUser(int, string);
+    void createUser(int, string, int);
     void deleteUser(int);
     void dispAccount(int);
     void dispAllAccounts();
