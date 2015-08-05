@@ -1,6 +1,0 @@
-<map id="User::User" name="User::User">
-<area shape="rect" id="node2" href="$classCreditAccount.html" title="{CreditAccount\n||+ CreditAccount()\l+ CreditAccount()\l+ withdrawl()\l+ endOfMonth()\l}" alt="" coords="5,209,131,330"/>
-<area shape="rect" id="node3" href="$classAccount.html" title="{Account\n|+ balance\l+ id\l|+ Account()\l+ Account()\l+ deposit()\l+ withdrawl()\l+ getBalance()\l}" alt="" coords="171,6,277,157"/>
-<area shape="rect" id="node4" href="$classSavingsAccount.html" title="{SavingsAccount\n||+ SavingsAccount()\l+ SavingsAccount()\l+ withdrawl()\l}" alt="" coords="155,216,292,323"/>
-<area shape="rect" id="node5" href="$classChequingAccount.html" title="{ChequingAccount\n||+ ChequingAccount()\l+ ChequingAccount()\l+ withdrawl()\l}" alt="" coords="317,216,461,323"/>
-</map>

@@ -1,5 +1,0 @@
-2014-10-13	INFO	patrick successfully logged in
-2014-10-13	INFO	patrick is depositing funds
-2014-10-13	INFO	patrick successfully deposited 1000 into savings
-2014-11-17	INFO	patrick successfully logged in
-2014-11-17	INFO	patrick	checked balance
