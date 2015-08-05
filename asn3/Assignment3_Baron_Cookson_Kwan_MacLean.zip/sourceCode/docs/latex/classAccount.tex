@@ -1,0 +1,130 @@
+\hypertarget{classAccount}{\section{Account Class Reference}
+\label{classAccount}\index{Account@{Account}}
+}
+
+
+Inheritance diagram for Account\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classAccount__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Account\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{classAccount__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAccount_a366660970b5eeb5c17436062327f1b14}{\hyperlink{classAccount_a366660970b5eeb5c17436062327f1b14}{Account} ()}\label{classAccount_a366660970b5eeb5c17436062327f1b14}
+
+\begin{DoxyCompactList}\small\item\em Empty account constructor. Sets balance and id to 0. \end{DoxyCompactList}\item 
+\hyperlink{classAccount_a8aec0e7394567f9fad51e5c2ca74ba02}{Account} (double starting\-\_\-balance)
+\begin{DoxyCompactList}\small\item\em constructor that sets a starting balance \end{DoxyCompactList}\item 
+int \hyperlink{classAccount_a577fd69104cecb1115094f191e539e03}{deposit} (double amount)
+\begin{DoxyCompactList}\small\item\em deposits money into the particular class \end{DoxyCompactList}\item 
+virtual int \hyperlink{classAccount_afe06e68bfc0e09eee1d39093c8f84704}{withdrawl} (double amount)
+\begin{DoxyCompactList}\small\item\em virtual withdrawl method. Accounts that inherit from \hyperlink{classAccount}{Account} must implement withdrawl \end{DoxyCompactList}\item 
+double \hyperlink{classAccount_a60839724cf983feea4546148ceabcc5f}{get\-Balance} ()
+\begin{DoxyCompactList}\small\item\em gets balance of the account \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAccount_a6e41f403b4813738ba835377f212de33}{double {\bfseries balance}}\label{classAccount_a6e41f403b4813738ba835377f212de33}
+
+\item 
+\hypertarget{classAccount_a296dcba09b2c9e7234a6b2afd3ce0ffb}{int {\bfseries id}}\label{classAccount_a296dcba09b2c9e7234a6b2afd3ce0ffb}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAccount_a8aec0e7394567f9fad51e5c2ca74ba02}{\index{Account@{Account}!Account@{Account}}
+\index{Account@{Account}!Account@{Account}}
+\subsubsection[{Account}]{\setlength{\rightskip}{0pt plus 5cm}Account\-::\-Account (
+\begin{DoxyParamCaption}
+\item[{double}]{starting\-\_\-balance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAccount_a8aec0e7394567f9fad51e5c2ca74ba02}
+
+
+constructor that sets a starting balance 
+
+
+\begin{DoxyParams}{Parameters}
+{\em starting\-\_\-balance} & the amount of money to start with in an account \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAccount_a577fd69104cecb1115094f191e539e03}{\index{Account@{Account}!deposit@{deposit}}
+\index{deposit@{deposit}!Account@{Account}}
+\subsubsection[{deposit}]{\setlength{\rightskip}{0pt plus 5cm}int Account\-::deposit (
+\begin{DoxyParamCaption}
+\item[{double}]{amount}
+\end{DoxyParamCaption}
+)}}\label{classAccount_a577fd69104cecb1115094f191e539e03}
+
+
+deposits money into the particular class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & the amount to deposit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+integer for success or failure 
+\end{DoxyReturn}
+\hypertarget{classAccount_a60839724cf983feea4546148ceabcc5f}{\index{Account@{Account}!get\-Balance@{get\-Balance}}
+\index{get\-Balance@{get\-Balance}!Account@{Account}}
+\subsubsection[{get\-Balance}]{\setlength{\rightskip}{0pt plus 5cm}double Account\-::get\-Balance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAccount_a60839724cf983feea4546148ceabcc5f}
+
+
+gets balance of the account 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classAccount_afe06e68bfc0e09eee1d39093c8f84704}{\index{Account@{Account}!withdrawl@{withdrawl}}
+\index{withdrawl@{withdrawl}!Account@{Account}}
+\subsubsection[{withdrawl}]{\setlength{\rightskip}{0pt plus 5cm}int Account\-::withdrawl (
+\begin{DoxyParamCaption}
+\item[{double}]{amount}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAccount_afe06e68bfc0e09eee1d39093c8f84704}
+
+
+virtual withdrawl method. Accounts that inherit from \hyperlink{classAccount}{Account} must implement withdrawl 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & to withdraw \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int for success or failure 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classChequingAccount_a58e0475e704c4bf69c671d6c2dc79a97}{Chequing\-Account}, \hyperlink{classSavingsAccount_ab79e02d7fd76e19a8b852eff489210df}{Savings\-Account}, and \hyperlink{classCreditAccount_a56a3fd7d01d9767505895dbcec24ba4e}{Credit\-Account}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+src/\-Account/account.\-h\item 
+src/\-Account/account.\-cpp\end{DoxyCompactItemize}

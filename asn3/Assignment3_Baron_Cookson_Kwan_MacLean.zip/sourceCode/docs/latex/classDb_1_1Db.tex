@@ -1,0 +1,218 @@
+\hypertarget{classDb_1_1Db}{\section{Db\-:\-:Db Class Reference}
+\label{classDb_1_1Db}\index{Db\-::\-Db@{Db\-::\-Db}}
+}
+
+
+c++ class wrapper for a handful of static methods for accessing databases  
+
+
+
+
+{\ttfamily \#include $<$db.\-h$>$}
+
+
+
+Collaboration diagram for Db\-:\-:Db\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{classDb_1_1Db__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classDb_1_1Db_acb6baca594f012e54b3b413fc8490909}{Connect} ()
+\begin{DoxyCompactList}\small\item\em Connects to the database. \end{DoxyCompactList}\item 
+static long \hyperlink{classDb_1_1Db_a7adcafeb518814ae624e81bd998fe2c7}{Select} (std\-::string const \&query, \hyperlink{structDb_1_1db__rows}{db\-\_\-rows} \&rows)
+\begin{DoxyCompactList}\small\item\em Performs a select query on the database and outputs \hyperlink{structDb_1_1db__rows}{db\-\_\-rows}. \end{DoxyCompactList}\item 
+static std\-::string \hyperlink{classDb_1_1Db_a4a39f1b4090a66e07a9997c05291e857}{Get\-Element\-By\-Name} (std\-::string const \&name, std\-::vector$<$ std\-::string $>$ const \&column\-\_\-names, std\-::vector$<$ std\-::string $>$ const \&row)
+\begin{DoxyCompactList}\small\item\em Gets an element of a row by its column name. \end{DoxyCompactList}\item 
+static long \hyperlink{classDb_1_1Db_ade8f079023aa580603606d862afaba36}{Insert} (std\-::string const \&query, int \&id)
+\begin{DoxyCompactList}\small\item\em Inserts a new row into the database and returns the id. \end{DoxyCompactList}\item 
+static long \hyperlink{classDb_1_1Db_a7b7432985c8391482226a42a59e206fc}{Execute\-Non\-Query} (std\-::string const \&query, int \&rows\-\_\-affected)
+\begin{DoxyCompactList}\small\item\em Executes a query on the database with the expectation that no result will be provided. \end{DoxyCompactList}\item 
+static std\-::string \hyperlink{classDb_1_1Db_a6959db84448d62d069c761e3ce25d52c}{Escape\-Sql\-Value} (std\-::string const \&val)
+\begin{DoxyCompactList}\small\item\em Escapes an S\-Q\-L value to thwart hackers. \end{DoxyCompactList}\item 
+static std\-::string \hyperlink{classDb_1_1Db_acab38065a09648c66c53c1f948c48b6a}{Paramertized\-Query} (std\-::string query, std\-::vector$<$ std\-::string $>$ values)
+\begin{DoxyCompactList}\small\item\em S\-Q\-L paramertized query. \end{DoxyCompactList}\item 
+\hypertarget{classDb_1_1Db_a46c8f600cae71bddda3419a600e99136}{static void \hyperlink{classDb_1_1Db_a46c8f600cae71bddda3419a600e99136}{Print\-Sql\-Error} ()}\label{classDb_1_1Db_a46c8f600cae71bddda3419a600e99136}
+
+\begin{DoxyCompactList}\small\item\em Prints all S\-Q\-L errors if S\-Q\-L\-\_\-\-P\-R\-I\-N\-T\-\_\-\-E\-R\-R\-O\-R\-S is defined. \end{DoxyCompactList}\item 
+\hypertarget{classDb_1_1Db_ab0701e0bc17f6f01b0cbaaab05be3a6e}{static void \hyperlink{classDb_1_1Db_ab0701e0bc17f6f01b0cbaaab05be3a6e}{Print\-Sql\-Debug} (std\-::string const \&message)}\label{classDb_1_1Db_ab0701e0bc17f6f01b0cbaaab05be3a6e}
+
+\begin{DoxyCompactList}\small\item\em Prints all S\-Q\-L debug messages if S\-Q\-L\-\_\-\-P\-R\-I\-N\-T\-\_\-\-D\-E\-B\-U\-G is defined. \end{DoxyCompactList}\item 
+\hypertarget{classDb_1_1Db_a0f8b285970a00da958843ff27e05447b}{static void \hyperlink{classDb_1_1Db_a0f8b285970a00da958843ff27e05447b}{Disconnect} ()}\label{classDb_1_1Db_a0f8b285970a00da958843ff27e05447b}
+
+\begin{DoxyCompactList}\small\item\em Disconnects from the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+c++ class wrapper for a handful of static methods for accessing databases 
+
+Currently the only implemented database system is My\-S\-Q\-L 
+
+\subsection{Member Function Documentation}
+\hypertarget{classDb_1_1Db_acb6baca594f012e54b3b413fc8490909}{\index{Db\-::\-Db@{Db\-::\-Db}!Connect@{Connect}}
+\index{Connect@{Connect}!Db::Db@{Db\-::\-Db}}
+\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}void Db\-::\-Db\-::\-Connect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDb_1_1Db_acb6baca594f012e54b3b413fc8490909}
+
+
+Connects to the database. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em mysql} & error Makes a standard connection to the database and stores the result as a singleton object \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classDb_1_1Db_a6959db84448d62d069c761e3ce25d52c}{\index{Db\-::\-Db@{Db\-::\-Db}!Escape\-Sql\-Value@{Escape\-Sql\-Value}}
+\index{Escape\-Sql\-Value@{Escape\-Sql\-Value}!Db::Db@{Db\-::\-Db}}
+\subsubsection[{Escape\-Sql\-Value}]{\setlength{\rightskip}{0pt plus 5cm}string Db\-::\-Db\-::\-Escape\-Sql\-Value (
+\begin{DoxyParamCaption}
+\item[{std\-::string const \&}]{val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDb_1_1Db_a6959db84448d62d069c761e3ce25d52c}
+
+
+Escapes an S\-Q\-L value to thwart hackers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & the string to be escaped \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a copy of the escaped string 
+\end{DoxyReturn}
+\hypertarget{classDb_1_1Db_a7b7432985c8391482226a42a59e206fc}{\index{Db\-::\-Db@{Db\-::\-Db}!Execute\-Non\-Query@{Execute\-Non\-Query}}
+\index{Execute\-Non\-Query@{Execute\-Non\-Query}!Db::Db@{Db\-::\-Db}}
+\subsubsection[{Execute\-Non\-Query}]{\setlength{\rightskip}{0pt plus 5cm}long Db\-::\-Db\-::\-Execute\-Non\-Query (
+\begin{DoxyParamCaption}
+\item[{std\-::string const \&}]{query, }
+\item[{int \&}]{rows\-\_\-affected}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDb_1_1Db_a7b7432985c8391482226a42a59e206fc}
+
+
+Executes a query on the database with the expectation that no result will be provided. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em int} & S\-Q\-L\-\_\-\-Q\-U\-E\-R\-Y\-\_\-\-F\-A\-I\-L\-E\-D \\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em query} & the A\-S\-C\-I\-I/utf8 S\-Q\-L statement \\
+\hline
+{\em rows\-\_\-affected} & out parameter representing the number of database rows affected by the query \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDb_1_1Db_a4a39f1b4090a66e07a9997c05291e857}{\index{Db\-::\-Db@{Db\-::\-Db}!Get\-Element\-By\-Name@{Get\-Element\-By\-Name}}
+\index{Get\-Element\-By\-Name@{Get\-Element\-By\-Name}!Db::Db@{Db\-::\-Db}}
+\subsubsection[{Get\-Element\-By\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Db\-::\-Db\-::\-Get\-Element\-By\-Name (
+\begin{DoxyParamCaption}
+\item[{std\-::string const \&}]{name, }
+\item[{std\-::vector$<$ std\-::string $>$ const \&}]{column\-\_\-names, }
+\item[{std\-::vector$<$ std\-::string $>$ const \&}]{row}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDb_1_1Db_a4a39f1b4090a66e07a9997c05291e857}
+
+
+Gets an element of a row by its column name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the column \\
+\hline
+{\em column\-\_\-names} & a list of the column names, ordered respectively, for the rows container \\
+\hline
+{\em row} & the row of data selected from the table \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the element in the same index position in the row container as the column name in the column\-\_\-names container 
+\end{DoxyReturn}
+\hypertarget{classDb_1_1Db_ade8f079023aa580603606d862afaba36}{\index{Db\-::\-Db@{Db\-::\-Db}!Insert@{Insert}}
+\index{Insert@{Insert}!Db::Db@{Db\-::\-Db}}
+\subsubsection[{Insert}]{\setlength{\rightskip}{0pt plus 5cm}long Db\-::\-Db\-::\-Insert (
+\begin{DoxyParamCaption}
+\item[{std\-::string const \&}]{query, }
+\item[{int \&}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDb_1_1Db_ade8f079023aa580603606d862afaba36}
+
+
+Inserts a new row into the database and returns the id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & the A\-S\-C\-I\-I/utf8 S\-Q\-L statement \\
+\hline
+{\em id} & output of the row id \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDb_1_1Db_acab38065a09648c66c53c1f948c48b6a}{\index{Db\-::\-Db@{Db\-::\-Db}!Paramertized\-Query@{Paramertized\-Query}}
+\index{Paramertized\-Query@{Paramertized\-Query}!Db::Db@{Db\-::\-Db}}
+\subsubsection[{Paramertized\-Query}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string Db\-::\-Db\-::\-Paramertized\-Query (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{query, }
+\item[{std\-::vector$<$ std\-::string $>$}]{values}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDb_1_1Db_acab38065a09648c66c53c1f948c48b6a}
+
+
+S\-Q\-L paramertized query. 
+
+Emulates standard paramertized queries for database safety in preventing attacks.
+
+Requires the same number of values as ? 
+\begin{DoxyExceptions}{Exceptions}
+{\em I\-N\-V\-A\-L\-I\-D\-\_\-\-P\-A\-R\-A\-M\-E\-R\-T\-I\-Z\-E\-D\-\_\-\-Q\-U\-E\-R\-Y} & \\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em query} & the A\-S\-C\-I\-I/utf8 S\-Q\-L statement \\
+\hline
+{\em values} & the values that match the ?s to be replaced in the query \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a new string representing a safe S\-Q\-L query 
+\end{DoxyReturn}
+\hypertarget{classDb_1_1Db_a7adcafeb518814ae624e81bd998fe2c7}{\index{Db\-::\-Db@{Db\-::\-Db}!Select@{Select}}
+\index{Select@{Select}!Db::Db@{Db\-::\-Db}}
+\subsubsection[{Select}]{\setlength{\rightskip}{0pt plus 5cm}long Db\-::\-Db\-::\-Select (
+\begin{DoxyParamCaption}
+\item[{std\-::string const \&}]{query, }
+\item[{{\bf db\-\_\-rows} \&}]{rows}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDb_1_1Db_a7adcafeb518814ae624e81bd998fe2c7}
+
+
+Performs a select query on the database and outputs \hyperlink{structDb_1_1db__rows}{db\-\_\-rows}. 
+
+Runs a select and copies the memory to c++ containers and completes a \hyperlink{structDb_1_1db__rows}{db\-\_\-rows} struct 
+\begin{DoxyExceptions}{Exceptions}
+{\em int} & predefined database error constant \\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em query} & the A\-S\-C\-I\-I/utf8 S\-Q\-L statement \\
+\hline
+{\em rows} & the result rows in c++ containers \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+src/\-Db/db.\-h\item 
+src/\-Db/db.\-cpp\end{DoxyCompactItemize}

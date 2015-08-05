@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Detailed report on module ManagerMethods-->
+<CCCC_Project>
+<module_summary>
+<lines_of_code value="513" level="1" />
+<lines_of_code_per_member_function value="******" level="0" />
+<McCabes_cyclomatic_complexity value="100" level="0" />
+<McCabes_cyclomatic_complexity_per_member_function value="******" level="2" />
+<lines_of_code value="34" level="0" />
+<lines_of_code_per_member_function value="********" level="2" />
+<lines_of_code_per_line_of_comment value="15.088" level="1" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="2.941" level="0" />
+<weighted_methods_per_class_unity value="11" level="0" />
+<weighted_methods_per_class_visibility value="1" level="0" />
+<depth_of_inheritance_tree value="0" level="0" />
+<number_of_children value="0" level="0" />
+<coupling_between_objects value="1" level="0" />
+<IF4 value="0" level="0" />
+<IF4_per_member_function value="********" level="0" />
+<IF4_visible value="0" level="0" />
+<IF4_visible_per_member_function value="********" level="0" />
+<IF4_concrete value="0" level="0" />
+<IF4_concrete_per_member_function value="********" level="0" />
+</module_summary>
+<module_detail>
+<description>definition</description>
+<source_reference file="User/managermethods.h" line="14" />
+<lines_of_code value="4" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</module_detail>
+<procedural_detail>
+<member_function>
+<name>ManagerMethods()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="9" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="16" />
+</extent>
+<lines_of_code value="4" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>closeAccount()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="265" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="49" />
+</extent>
+<lines_of_code value="114" level="2" />
+<McCabes_cyclomatic_complexity value="29" level="1" />
+<lines_of_comment value="3" level="0" />
+<lines_of_code_per_line_of_comment value="38.000" level="2" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="9.667" level="1" />
+</member_function>
+<member_function>
+<name>createUser()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="13" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="59" />
+</extent>
+<lines_of_code value="44" level="1" />
+<McCabes_cyclomatic_complexity value="5" level="0" />
+<lines_of_comment value="3" level="0" />
+<lines_of_code_per_line_of_comment value="14.667" level="1" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="1.667" level="0" />
+</member_function>
+<member_function>
+<name>deleteUser()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="64" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="64" />
+</extent>
+<lines_of_code value="47" level="1" />
+<McCabes_cyclomatic_complexity value="12" level="1" />
+<lines_of_comment value="3" level="0" />
+<lines_of_code_per_line_of_comment value="15.667" level="1" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="4.000" level="0" />
+</member_function>
+<member_function>
+<name>getAllUserDetails()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="453" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="34" />
+</extent>
+<lines_of_code value="46" level="1" />
+<McCabes_cyclomatic_complexity value="9" level="0" />
+<lines_of_comment value="3" level="0" />
+<lines_of_code_per_line_of_comment value="15.333" level="1" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="3.000" level="0" />
+</member_function>
+<member_function>
+<name>getFrozenCards()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="507" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="39" />
+</extent>
+<lines_of_code value="21" level="0" />
+<McCabes_cyclomatic_complexity value="3" level="0" />
+<lines_of_comment value="3" level="0" />
+<lines_of_code_per_line_of_comment value="7.000" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>getUserDetails()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="392" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="29" />
+</extent>
+<lines_of_code value="49" level="1" />
+<McCabes_cyclomatic_complexity value="9" level="0" />
+<lines_of_comment value="3" level="0" />
+<lines_of_code_per_line_of_comment value="16.333" level="1" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="3.000" level="0" />
+</member_function>
+<member_function>
+<name>managerCommandList()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="530" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="69" />
+</extent>
+<lines_of_code value="14" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="3" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>managerCommandSelect(User &amp;)</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="545" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="22" />
+</extent>
+<lines_of_code value="53" level="1" />
+<McCabes_cyclomatic_complexity value="13" level="1" />
+<lines_of_comment value="5" level="0" />
+<lines_of_code_per_line_of_comment value="10.600" level="1" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="2.600" level="0" />
+</member_function>
+<member_function>
+<name>monthEndCreditPayment()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="119" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="44" />
+</extent>
+<lines_of_code value="29" level="0" />
+<McCabes_cyclomatic_complexity value="4" level="0" />
+<lines_of_comment value="4" level="0" />
+<lines_of_code_per_line_of_comment value="7.250" level="1" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>openAccount()</name>
+<extent>
+<description>definition</description>
+<source_reference file="User/managermethods.cpp" line="157" />
+</extent>
+<extent>
+<description>declaration</description>
+<source_reference file="User/managermethods.h" line="54" />
+</extent>
+<lines_of_code value="88" level="1" />
+<McCabes_cyclomatic_complexity value="16" level="1" />
+<lines_of_comment value="4" level="0" />
+<lines_of_code_per_line_of_comment value="22.000" level="1" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="4.000" level="0" />
+</member_function>
+</procedural_detail>
+<structural_detail>
+<module>
+<name>ManagerMethods</name>
+<client_module>
+</client_module>
+<supplier_module>
+<name>User</name>
+<visible>true</visible>
+<concrete>false</concrete>
+<extent>
+<description>pass by reference</description>
+<source_reference file="User/managermethods.cpp" line="545" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="User/managermethods.h" line="22" />
+</extent>
+</supplier_module>
+</module>
+</structural_detail>
+</CCCC_Project>

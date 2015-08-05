@@ -1,0 +1,122 @@
+\hypertarget{classFundMovementValidation}{\section{Fund\-Movement\-Validation Class Reference}
+\label{classFundMovementValidation}\index{Fund\-Movement\-Validation@{Fund\-Movement\-Validation}}
+}
+
+
+Collaboration diagram for Fund\-Movement\-Validation\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classFundMovementValidation__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFundMovementValidation_a77f3ec4e2f10391db28c8ab4ade75332}{Fund\-Movement\-Validation} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classFundMovementValidation_ad9e5d261bef007905722bac87e1f95c9}{transfer\-Funds} (\hyperlink{classAccount}{Account} \&from\-Account, \hyperlink{classAccount}{Account} \&to\-Account, double amount)
+\begin{DoxyCompactList}\small\item\em Transfers funds from one account to another. \end{DoxyCompactList}\item 
+static int \hyperlink{classFundMovementValidation_a4b9eddfeb255177cf5c45445a32e3e58}{withdraw} (\hyperlink{classAccount}{Account} \&from\-Account, double amount)
+\begin{DoxyCompactList}\small\item\em withdraws money from an account \end{DoxyCompactList}\item 
+static int \hyperlink{classFundMovementValidation_a9aebd2d98388d6c856fde366f5310b10}{deposit} (\hyperlink{classAccount}{Account} \&to\-Account, double amount)
+\begin{DoxyCompactList}\small\item\em deposits money to an account \end{DoxyCompactList}\item 
+\hypertarget{classFundMovementValidation_ad47ff42a70e417dff2d036a0f5373a30}{static int {\bfseries end\-Of\-Month\-Credit\-Payment} (\hyperlink{classUser_1_1User}{User\-::\-User} \&user, \hyperlink{classAccount}{Account} \&chequing\-Account, \hyperlink{classAccount}{Account} \&credit\-Account, double amount)}\label{classFundMovementValidation_ad47ff42a70e417dff2d036a0f5373a30}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classFundMovementValidation_a77f3ec4e2f10391db28c8ab4ade75332}{\index{Fund\-Movement\-Validation@{Fund\-Movement\-Validation}!Fund\-Movement\-Validation@{Fund\-Movement\-Validation}}
+\index{Fund\-Movement\-Validation@{Fund\-Movement\-Validation}!FundMovementValidation@{Fund\-Movement\-Validation}}
+\subsubsection[{Fund\-Movement\-Validation}]{\setlength{\rightskip}{0pt plus 5cm}Fund\-Movement\-Validation\-::\-Fund\-Movement\-Validation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classFundMovementValidation_a77f3ec4e2f10391db28c8ab4ade75332}
+
+
+default constructor 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classFundMovementValidation_a9aebd2d98388d6c856fde366f5310b10}{\index{Fund\-Movement\-Validation@{Fund\-Movement\-Validation}!deposit@{deposit}}
+\index{deposit@{deposit}!FundMovementValidation@{Fund\-Movement\-Validation}}
+\subsubsection[{deposit}]{\setlength{\rightskip}{0pt plus 5cm}int Fund\-Movement\-Validation\-::deposit (
+\begin{DoxyParamCaption}
+\item[{{\bf Account} \&}]{to\-Account, }
+\item[{double}]{amount}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classFundMovementValidation_a9aebd2d98388d6c856fde366f5310b10}
+
+
+deposits money to an account 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to\-Account} & \\
+\hline
+{\em amount} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classFundMovementValidation_ad9e5d261bef007905722bac87e1f95c9}{\index{Fund\-Movement\-Validation@{Fund\-Movement\-Validation}!transfer\-Funds@{transfer\-Funds}}
+\index{transfer\-Funds@{transfer\-Funds}!FundMovementValidation@{Fund\-Movement\-Validation}}
+\subsubsection[{transfer\-Funds}]{\setlength{\rightskip}{0pt plus 5cm}int Fund\-Movement\-Validation\-::transfer\-Funds (
+\begin{DoxyParamCaption}
+\item[{{\bf Account} \&}]{from\-Account, }
+\item[{{\bf Account} \&}]{to\-Account, }
+\item[{double}]{amount}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classFundMovementValidation_ad9e5d261bef007905722bac87e1f95c9}
+
+
+Transfers funds from one account to another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from\-Account} & the account to withdraw from \\
+\hline
+{\em to\-Account} & the account to deposit to \\
+\hline
+{\em amount} & the amount to transfer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classFundMovementValidation_a4b9eddfeb255177cf5c45445a32e3e58}{\index{Fund\-Movement\-Validation@{Fund\-Movement\-Validation}!withdraw@{withdraw}}
+\index{withdraw@{withdraw}!FundMovementValidation@{Fund\-Movement\-Validation}}
+\subsubsection[{withdraw}]{\setlength{\rightskip}{0pt plus 5cm}int Fund\-Movement\-Validation\-::withdraw (
+\begin{DoxyParamCaption}
+\item[{{\bf Account} \&}]{from\-Account, }
+\item[{double}]{amount}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classFundMovementValidation_a4b9eddfeb255177cf5c45445a32e3e58}
+
+
+withdraws money from an account 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from\-Account} & \\
+\hline
+{\em amount} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+src/\-Account/fundmovementvalidation.\-h\item 
+src/\-Account/fundmovementvalidation.\-cpp\end{DoxyCompactItemize}
