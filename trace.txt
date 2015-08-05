@@ -1,2 +1,0 @@
-Execution trace on | 234567 | Wed Sep 24 12:39:10 2014
-Execution trace off | 234567 | Wed Sep 24 12:39:14 2014
