@@ -1,6 +1,6 @@
-3307asn1
+ATM-App
 ========
-A comman-line ATM application written with C++ for a software engineering class.
+A command-line ATM application written with C++ for a software engineering class.
 
 Build with `make`
 
